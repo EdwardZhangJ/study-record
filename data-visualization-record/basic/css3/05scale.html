@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        background-image: url('./images/grid.png');
+      }
+
+      .box {
+        width: 200px;
+        height: 100px;
+        background-color: skyblue;
+
+        /* transform */
+        /* transform: translateX(100px) translateY(100px) rotate(45deg); */
+        /* transform: rotate(45deg) translateX(100px) translateY(100px); */
+
+        /* transform-origin */
+        transform: rotate(45deg);
+        /* left: 0 50% */
+        /* bottom: 50% 100% */
+        transform-origin: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">box</div>
+  </body>
+</html>
