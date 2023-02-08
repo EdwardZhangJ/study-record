@@ -1,9 +1,11 @@
 # study-record
-study fronted roadmap records
+
+study fronted road map records
 
 ## Including
 
 - javascript record
 - mini-program-record
-- vue3-typescript-record
+- vue3-record
+- react-record
 - note-record
