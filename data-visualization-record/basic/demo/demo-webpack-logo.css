@@ -47,7 +47,7 @@ ul {
 
   }
   50%, 100% {
-  transform: rotateX(326.5deg) rotateY(-315deg);
+  transform: rotateX(-33.5deg) rotateY(-315deg);
 
   }
 }
@@ -93,6 +93,18 @@ ul {
   /* 启用3D空间 */
   transform-style: preserve-3d;
   transform: rotateX(-33.5deg) rotateY(45deg);
+  animation: outerLoop 6s ease-in-out infinite;
+}
+
+@keyframes outerLoop {
+  0% {
+  transform: rotateX(-33.5deg) rotateY(45deg);
+
+  }
+  50%, 100% {
+  transform: rotateX(-33.5deg) rotateY(405deg);
+
+  }
 }
 
 .cube-outer li {
