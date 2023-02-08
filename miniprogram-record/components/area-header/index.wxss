@@ -1,0 +1,38 @@
+/* components/area-header/index.wxss */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 88rpx;
+}
+
+.header .title {
+  font-size: 36rpx;
+  font-weight: 700;
+}
+
+/* 通过css来进行判断是否传入 slot 插槽
+* 当传入 slot 时，不显示默认内容；当不传入 slot 时，将默认内容设置为 display：flex 
+*/
+.header .slot:empty + .default {
+	display: flex;
+}
+
+/* test 无 slot 时,插入一个黄色的块 */
+/* .header .slot:empty {
+	background-color: #ff0;
+	width: 50rpx;
+	height: 50rpx;
+} */
+
+.header .default {
+  display: none;
+  align-items: center;
+  font-size: 28rpx;
+  color: #777;
+}
+
+.header .default .icon {
+  width: 50rpx;
+  height: 50rpx;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  function  fn(url, callback){
+    let httpRequest;
+    httpRequest = window.XMLHttpRequest ? new XMLHttpRequest():
+      window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP"):undefined;
+
+    httpRequest.onreadystatechange = function (){
+      if(httpRequest.readyState == 4 && httpRequest.status == 200) {
+        callback.call(httpRequest.responseXML);
+      }
+    };
+    httpRequest.open("GET", url);
+    httpRequest.send();
+  }
+
+  fn("text.xml", function (){
+    console.log(this);
+  })
+
+
+</script>
+</body>
+</html>

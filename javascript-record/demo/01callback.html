@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  // demo 2 this 指向
+  let clientData = {
+    id: '096545',
+    fullName: "Not Set",
+    //setUsrName是一个在clientData对象中的方法
+    setUserName: function (firstName, lastName){
+      this.fullName = firstName + " " + lastName;
+    }
+  }
+
+  function getUserInput(firstName, lastName, callback, callbackObj){
+    //code .....
+    //调用回调函数存储
+    callback.apply(callbackObj, [firstName, lastName]);
+  }
+
+
+  // getUserInput("Barack","Obama",clientData.setUserName);
+  getUserInput("Barack","Obama",clientData.setUserName, clientData);
+
+  // console.log(clientData.fullName);  //Not Set
+  console.log(clientData.fullName);  //Barack Obama
+
+  // console.log(window.fullName);  //Barack Obama
+  console.log(window.fullName);  // Undefined
+
+</script>
+</body>
+</html>

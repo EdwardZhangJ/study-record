@@ -1,0 +1,9 @@
+/* pages/home-video/index.wxss */
+.top-video {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.video-container {
+	width: 48%;
+}

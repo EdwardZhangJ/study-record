@@ -1,0 +1,75 @@
+<!--pages/home-music/index.wxml-->
+<!-- 1. 搜索框 -->
+<van-search disabled background="#fafafa" shape="round" placeholder="请输入歌曲名称" bind:click-input="handleSearchClick" />
+
+<!-- 2. 轮播图 -->
+<!-- 如何将 轮播图的高度和图片的高度设置一致 -->
+<!-- 1. 如何获取图片高度？ 2. 如何设置这个高度：行内样式 -->
+<!-- 问题1： 1. 请求轮播图数据， 2. image src="img-url" 3. 图片加载完成 -->
+<swiper class="swiper" indicator-dots autoplay circular style="height: {{swiperHeight}}px;">
+	<block wx:for="{{banners}}" wx:key="bannerId">
+		<swiper-item class="swiper-item">
+			<image class="swiper-image" src="{{item.pic}}" mode="widthFix" bindload="handleSwiperImageLoad"></image>
+		</swiper-item>
+	</block>
+</swiper>
+
+<!-- 地图测试模块 -->
+
+<!-- 3. 歌曲推荐模块 -->
+<view class="recommend-song">
+	<!-- 1. 设置 属性，使用 wx:if 进行显隐控制 -->
+	<!-- <area-header title="推荐歌曲" showRight="{{false}}"></area-header> -->
+	<area-header title="推荐歌曲" bind:openMoreClick="openMoreClick">
+		<!-- 2. 使用类似于vue插槽的形式 进行动态的替换, 通过 css 来进行控制显隐-->
+		<!-- <text>哈哈哈</text> -->
+	</area-header>
+
+	<view class="song-list">
+		<block wx:for="{{recommendSongs}}" wx:key="id">
+			<song-item-v1 item="{{item}}" bindtap="handleSongItemClick" data-index="{{index}}"></song-item-v1>
+		</block>
+	</view>
+</view>
+
+<!-- 4. 热门歌单 推荐歌单模块 -->
+<view class="song-list">
+	<song-list-area title="热门歌单" 
+									hotMusicList="{{hotMusicList}}"
+									wx:if="{{hotMusicList.length}}"></song-list-area>
+	<song-list-area title="推荐歌单" 
+									hotMusicList="{{recommandMusicList}}"
+									wx:if="{{recommandMusicList.length}}"
+									bindtap="handleSongListClick"></song-list-area>
+</view>
+
+<!-- 5. 巅峰榜模块 -->
+<view class="music-ranking">
+	<area-header title="巅峰榜" showRight="{{false}}"></area-header>
+	<view class="ranking-list">
+		<block wx:for="{{rankingList}}" wx:key="index">
+			<rank-area-item item="{{item}}" 
+											bindtap="openRankingSong"
+											data-idx="{{index}}"></rank-area-item>
+		</block>
+	</view>
+</view>
+
+<!-- 播放工具栏 -->
+<view class="play-bar-placeholder" wx:if="{{currentSong.id}}"></view>
+<view class="play-bar" wx:if="{{currentSong.id}}" bindtap="handlePlayBarClick">
+	<view class="left">
+		<image class="album album-anim" 
+			style="animation-play-state: {{isPlaying ? 'running' : 'paused'}};"
+		  mode="aspectFill" 
+			src="{{currentSong.al.picUrl}}"></image>
+		<view class="name"> {{currentSong.name}}</view>
+	</view>
+	<view class="right">
+		<image class="icon play" src="/assets/images/music/{{ isPlaying ? 'pause' : 'play'}}_icon.png"
+			catchtap="handlePlayBtnClick"></image>
+		<image class="icon playlist" 
+			src="/assets/images/music/playlist_icon.png"
+			catchtap="handlePlayListBtnClick"></image>
+	</view>
+</view>

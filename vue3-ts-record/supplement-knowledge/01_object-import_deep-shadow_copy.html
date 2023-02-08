@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <!-- 0. 通过cdn 引入 loadsh 库 -->
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+    <!-- 1. 对象的引用赋值 -->
+    <script>
+      // 对象是引用类型, 对象实际保存的是对象的引用，即内存地址
+      // const info = { name: "why", age: 18 };
+      // const obj = info;
+      // info.name = "kobe"
+      // console.log(obj.name); // "kobe"
+    </script>
+    <!-- 2. 对象的浅拷贝 -->
+    <script>
+      const info = { name: 'why', age: 18, friend: { name: 'kobe' } }
+      // Object.assign({}, info) 会重新创建一个新对象 {}, 将info中的属性拷贝一份到 新对象中，此时obj 是新对象的内存地址
+      // 此时修改 info 中的内容，不会修改 obj 中的值
+      // const obj = Object.assign({}, info)
+
+      // info.name = 'kobe'
+      // console.log(obj.name) // "why"
+      // info.friend.name = 'james'
+      // console.log(obj.friend.name) // "james"
+
+      // 使用 lodash 进行浅拷贝
+      // const obj = _.clone(info)
+      // info.name = 'kobe'
+      // console.log(obj.name) // 'why'
+    </script>
+
+    <!-- 3. 对象的深拷贝 -->
+    <script>
+      // const info = { name: 'why', age: 18, friend: { name: 'kobe' } }
+      // const obj = JSON.parse(JSON.stringify(info))
+      // info.friend.name = 'james'
+      // console.log(obj.friend.name)
+
+      // loadsh 的深拷贝
+      // _.cloneDeep(info)
+    </script>
+  </body>
+</html>

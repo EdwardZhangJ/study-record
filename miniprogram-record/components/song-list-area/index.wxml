@@ -1,0 +1,17 @@
+<!--components/song-list-area/index.wxml-->
+<view class="list-area">
+	<area-header title="{{title}}"></area-header>
+
+	<!-- x 轴滚动 -->
+	<!-- <scroll-view scroll-x class="scroll-list" style="width: {{screenWidth}}px;"> -->
+	<scroll-view scroll-x class="scroll-list">
+		<block wx:for="{{hotMusicList}}" wx:key="id">
+			<view class="list-item">
+				<song-list-item item="{{item}}"
+												bindtap="handleListItemClick"
+												data-item="{{item}}">
+												</song-list-item>
+			</view>
+		</block>
+	</scroll-view>
+</view>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  var name = "The Window";
+
+  /*var object = {
+    name : "My Object",
+    getNameFunc : function(){
+      return function(){
+        return this.name;
+      };
+    }
+  }; */
+
+  var object = {
+    name : "My Object",
+    getNameFunc : function(){
+      var that = this;
+      return function(){
+        return that.name;
+      };
+    }
+  };
+
+  // 两次分别打印 The WIndow 和 My Object
+  console.log(object.getNameFunc()());
+
+</script>
+</body>
+</html>

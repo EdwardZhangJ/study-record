@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app"></div>
+
+    <template id="my-app">
+      <component-a></component-a>
+      <component-a></component-a>
+      <component-a></component-a>
+    </template>
+
+    <template id="component-a">
+      <h2>{{title}}</h2>
+      <p>{{desc}}</p>
+      <button @click="btnClick">123</button>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      const App = {
+        template: '#my-app',
+      }
+
+      const app = Vue.createApp(App)
+      // 1. 使用app 注册一个全局组件
+      // 2. 全局组件L:意味着注册的这个组件可以在任何的组件模板中使用
+      app.component('component-a', {
+        template: '#component-a',
+        data() {
+          return {
+            title: '我是标题',
+            desc: '我是内容，哈哈哈哈哈',
+          }
+        },
+        methods: {
+          btnClick() {
+            console.log('按钮点击')
+          },
+        },
+      })
+
+      app.mount('#app')
+    </script>
+  </body>
+</html>
