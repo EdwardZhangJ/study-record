@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      canvas {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="300" height="300"></canvas>
+    <script>
+      window.onload = function () {
+        let canvasEl = document.getElementById('myCanvas')
+        if (!canvasEl.getContext) {
+          return
+        }
+        let ctx = canvasEl.getContext('2d')
+        let sun = new Image()
+        sun.src = '../images/canvas_sun.png'
+        let moon = new Image()
+        moon.src = '../images/canvas_moon.png'
+        let earth = new Image()
+        earth.src = '../images/canvas_earth.png'
+        // 在浏览器下一次重绘之前会回调该函数的回调函数 draw
+        requestAnimationFrame(draw)
+        // 一秒钟绘制 60帧
+        function draw() {
+          ctx.clearRect(0, 0, 300, 300)
+          ctx.save()
+
+          // 1. 绘制背景
+          ctx.save()
+          ctx.drawImage(sun, 0, 0) // 背景图
+          ctx.translate(150, 150) // 移动坐标
+          ctx.strokeStyle = 'rgba(0, 153, 255, 0.4)'
+          ctx.beginPath()
+          ctx.arc(0, 0, 105, 0, Math.PI * 2) // 公转轨道
+          ctx.stroke()
+          ctx.restore()
+
+          // 地球
+          let time = new Date()
+          let second = time.getSeconds()
+          let mill = time.getMilliseconds()
+          ctx.save() // earth start
+          ctx.translate(150, 150)
+          // 地球旋转
+          ctx.rotate(((Math.PI * 2) / (60 * 1000)) * (second * 1000 + mill))
+          ctx.translate(105, 0)
+          ctx.drawImage(earth, -12, -12) // 背景图
+
+          // 绘制月球
+          ctx.save() // moon start
+          // 月球旋转
+          ctx.rotate(((Math.PI * 2) / (10 * 1000)) * (second * 1000 + mill))
+
+          ctx.translate(0, 28)
+          ctx.drawImage(moon, -3.5, -3.5) // 背景图
+          ctx.restore() // moon end
+          ctx.restore() // earth end
+
+          ctx.restore()
+          requestAnimationFrame(draw)
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-image: url('./images/grid.png');
+      }
+      canvas {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="300" height="300"></canvas>
+    <script>
+      window.onload = function () {
+        let canvasEl = document.getElementById('myCanvas')
+        if (!canvasEl.getContext) {
+          return
+        }
+        let ctx = canvasEl.getContext('2d') // 2d | webgl
+
+        // 绘制 直线
+
+        /* ctx.lineWidth = 4
+        ctx.beginPath()
+        ctx.moveTo(10, 10)
+        ctx.lineTo(100, 10)
+        // ctx.closePath()  // 不是必须
+        ctx.stroke() // 绘制线条只能用 stroke() 填充 */
+
+        // 绘制三角形
+        /* ctx.beginPath()
+        ctx.moveTo(50, 0)
+        ctx.lineTo(100, 50)
+        ctx.lineTo(50, 100)
+        // ctx.closePath()
+        // ctx.stroke()
+        ctx.fill() */
+
+        // 绘制圆弧和圆
+        ctx.beginPath()
+        ctx.arc(50, 50, 25, 0, Math.PI * 2, false)
+        ctx.fillStyle = 'rgba(255, 0,0,.5)'
+        ctx.fill()
+
+        ctx.beginPath()
+        ctx.arc(150, 50, 25, 0, Math.PI, false)
+        ctx.closePath()
+        ctx.fillStyle = 'rgba(0,0,0,.8)'
+        ctx.fill()
+      }
+    </script>
+  </body>
+</html>

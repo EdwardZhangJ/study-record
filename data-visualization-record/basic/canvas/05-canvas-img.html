@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-image: url('./images/grid.png');
+      }
+      canvas {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="300" height="300"></canvas>
+    <script>
+      window.onload = function () {
+        let canvasEl = document.getElementById('myCanvas')
+        if (!canvasEl.getContext) {
+          return
+        }
+        let ctx = canvasEl.getContext('2d') // 2d | webgl
+
+        // 准备图片
+        var img = new Image()
+        img.src = './images/backdrop.png'
+        img.onload = function () {
+          // 2. 开始用 canvas
+          ctx.drawImage(img, 0, 0)
+          // 3. 绘制折现
+          ctx.beginPath()
+          ctx.moveTo(40, 100)
+          ctx.lineTo(50, 70)
+          ctx.lineTo(60, 90)
+          ctx.lineTo(100, 30)
+          ctx.lineTo(170, 90)
+          ctx.stroke()
+        }
+      }
+    </script>
+  </body>
+</html>

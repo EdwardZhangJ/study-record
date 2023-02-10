@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-image: url('./images/grid.png');
+      }
+      canvas {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="300" height="300"></canvas>
+    <script>
+      window.onload = function () {
+        let canvasEl = document.getElementById('myCanvas')
+        if (!canvasEl.getContext) {
+          return
+        }
+        let ctx = canvasEl.getContext('2d') // 2d | webgl
+
+        // 保存形变之前的形态
+        ctx.save()
+        // 1. 形变
+        ctx.translate(100, 100) // 平移坐标系统
+        ctx.scale(2, 2) // 对坐标轴进行了放大（2倍）
+        ctx.fillRect(0, 0, 50, 50)
+
+        ctx.restore()
+      }
+    </script>
+  </body>
+</html>

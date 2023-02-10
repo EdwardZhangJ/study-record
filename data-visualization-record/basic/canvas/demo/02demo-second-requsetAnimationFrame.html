@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-image: url('../images/grid.png');
+      }
+      canvas {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="300" height="300"></canvas>
+    <script>
+      window.onload = function () {
+        let canvasEl = document.getElementById('myCanvas')
+        if (!canvasEl.getContext) {
+          return
+        }
+        let ctx = canvasEl.getContext('2d')
+
+        // 在浏览器下一次重绘之前会回调该函数的回调函数 draw
+        requestAnimationFrame(draw)
+
+        // 一秒钟绘制 60帧
+        function draw() {
+          let second = new Date().getSeconds()
+          ctx.clearRect(0, 0, 300, 300)
+          ctx.save()
+
+          // 1. 开始绘图
+          ctx.translate(100, 100)
+          // 一个圆 平分 60份， 每次转到 Math.PI * 2 / 60
+          ctx.rotate(((Math.PI * 2) / 60) * second)
+          ctx.lineWidth = 6
+          ctx.lineCap = 'round'
+          ctx.strokeStyle = 'red'
+
+          ctx.beginPath()
+          ctx.moveTo(0, 0)
+          ctx.lineTo(0, -80)
+          ctx.stroke()
+
+          ctx.restore()
+          requestAnimationFrame(draw)
+        }
+      }
+    </script>
+  </body>
+</html>
