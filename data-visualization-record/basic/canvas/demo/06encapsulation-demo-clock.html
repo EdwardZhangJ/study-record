@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-image: url('../images/grid.png');
+      }
+      canvas {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+      .clock {
+        width: 300px;
+        height: 300px;
+        margin: 10px;
+        border-radius: 50px;
+        background-color: rgba(0, 0, 0, 1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="clock">
+      <canvas id="myCanvas" width="300" height="300"></canvas>
+    </div>
+    <script>
+      window.onload = function () {
+        let canvasEl = document.getElementById('myCanvas')
+        if (!canvasEl.getContext) {
+          return
+        }
+        let ctx = canvasEl.getContext('2d')
+
+        requestAnimationFrame(draw)
+        // 一秒钟绘制 60帧
+        function draw() {
+          ctx.clearRect(0, 0, 300, 300)
+          ctx.save()
+
+          // 1. 绘制背景 白色
+          drawBg()
+
+          // 2. 绘制数字
+          drawNumber()
+
+          let time = new Date()
+          let hours = time.getHours()
+          let minutes = time.getMinutes()
+          let seconds = time.getSeconds()
+          // 3. 绘制时针
+          drawHours(hours, minutes, seconds)
+
+          // 4. 绘制分针
+          drawMinutes(minutes, seconds)
+
+          // 5. 绘制秒针
+          drawSeconds(seconds)
+
+          // 6. 绘制圆心
+          drawCircle()
+
+          // 7. 绘制圆上刻度
+          drawHourTicks()
+
+          // 8. 绘制分钟的刻度
+          drawMinuteTicks()
+
+          ctx.restore()
+          requestAnimationFrame(draw)
+        }
+
+        function drawBg() {
+          ctx.save()
+          ctx.translate(150, 150)
+          ctx.fillStyle = 'white'
+          ctx.beginPath()
+          ctx.arc(0, 0, 130, 0, Math.PI * 2)
+          ctx.fill()
+          ctx.restore()
+        }
+
+        function drawNumber() {
+          ctx.save()
+          ctx.translate(150, 150)
+          // 参考线
+          // ctx.beginPath()
+          // ctx.moveTo(0, 0)
+          // ctx.lineTo(130, 0)
+          // ctx.closePath()
+          // ctx.stroke()
+
+          // 3. 绘制 时钟数字
+          ctx.font = '30px fangsong'
+          ctx.textBaseline = 'middle'
+          ctx.textAlign = 'center'
+
+          let numbers = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2]
+          for (let i = 0; i < numbers.length; i++) {
+            // i = 3，弧度0
+            // i = 4， 占一份，弧度 Math.PI * 2 / 12 * i
+            let x = Math.cos(((Math.PI * 2) / 12) * i) * 100
+            let y = Math.sin(((Math.PI * 2) / 12) * i) * 100
+            ctx.fillText(numbers[i], x, y)
+          }
+          ctx.restore()
+        }
+
+        function drawHours(hours, minutes, seconds) {
+          
+
+          ctx.save()
+          ctx.translate(150, 150) // 坐标轴原点
+          // 1h + 1min + 1 second = 弧度？
+          // Math.PI * 2 / 12  1h
+          // Math.PI * 2 / 12 / 60 1min
+          // Math.PI * 2 / 12 / 60 / 60 1second
+          ctx.rotate(
+            ((Math.PI * 2) / 12) * hours +
+              ((Math.PI * 2) / 12 / 60) * minutes +
+              ((Math.PI * 2) / 12 / 60 / 60) * seconds
+          )
+
+          ctx.lineWidth = 5
+          ctx.lineCap = 'round'
+          ctx.beginPath()
+          ctx.moveTo(0, 0)
+          ctx.lineTo(0, -50)
+          ctx.stroke()
+          ctx.restore()
+        }
+
+        function drawMinutes(minutes, seconds) {
+          ctx.save()
+          ctx.translate(150, 150) // 坐标轴原点
+          // Math.PI * 2 / 60 1min
+          // Math.PI * 2 / 60 / 60 1second
+          ctx.rotate(((Math.PI * 2) / 60) * minutes + ((Math.PI * 2) / 60 / 60) * seconds)
+
+          ctx.lineWidth = 3
+          ctx.lineCap = 'round'
+          ctx.beginPath()
+          ctx.moveTo(0, 0)
+          ctx.lineTo(0, -70)
+          ctx.stroke()
+          ctx.restore()
+        }
+
+        function drawSeconds(seconds) {
+          ctx.save()
+          ctx.translate(150, 150) // 坐标轴原点
+          // 1 second = 弧度？
+          // Math.PI * 2 / 60 1second
+          ctx.rotate(((Math.PI * 2) / 60) * seconds)
+
+          ctx.strokeStyle = 'red'
+          ctx.lineWidth = 2
+          ctx.lineCap = 'round'
+          ctx.beginPath()
+          ctx.moveTo(0, 0)
+          ctx.lineTo(0, -80)
+          ctx.stroke()
+          ctx.restore()
+        }
+
+        function drawCircle() {
+          ctx.save()
+          ctx.translate(150, 150) // 坐标轴原点
+          ctx.beginPath()
+          ctx.arc(0, 0, 8, 0, Math.PI * 2)
+          ctx.fill()
+          ctx.fillStyle = 'gray'
+          ctx.beginPath()
+          ctx.arc(0, 0, 5, 0, Math.PI * 2)
+          ctx.fill()
+          ctx.restore()
+        }
+
+        function drawHourTicks() {
+          ctx.save()
+          ctx.translate(150, 150) // 坐标轴原点
+          ctx.lineWidth = 3
+          for (let j = 0; j < 12; j++) {
+            ctx.rotate((Math.PI * 2) / 12)
+            ctx.beginPath()
+            ctx.moveTo(0, -130)
+            ctx.lineTo(0, -122)
+            ctx.stroke()
+          }
+          ctx.restore()
+
+          // ctx.rotate(Math.PI / 2)
+          // ctx.beginPath()
+          // ctx.moveTo(0, -130)
+          // ctx.lineTo(0, -122)
+          // ctx.stroke()
+          // ctx.restore()
+        }
+        function drawMinuteTicks() {
+          ctx.save()
+          ctx.translate(150, 150) // 坐标轴原点
+          ctx.lineWidth = 1
+          for (let j = 0; j < 60; j++) {
+            ctx.rotate((Math.PI * 2) / 60)
+            ctx.beginPath()
+            ctx.moveTo(0, -130)
+            ctx.lineTo(0, -122)
+            ctx.stroke()
+          }
+          ctx.restore()
+        }
+      }
+    </script>
+  </body>
+</html>

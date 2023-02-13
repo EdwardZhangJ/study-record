@@ -38,6 +38,16 @@
           ctx.save()
 
           // 1. 绘制背景
+          drawBg()
+
+          // 2.地球
+          drawEarth()
+
+          ctx.restore()
+          requestAnimationFrame(draw)
+        }
+
+        function drawBg() {
           ctx.save()
           ctx.drawImage(sun, 0, 0) // 背景图
           ctx.translate(150, 150) // 移动坐标
@@ -46,11 +56,13 @@
           ctx.arc(0, 0, 105, 0, Math.PI * 2) // 公转轨道
           ctx.stroke()
           ctx.restore()
+        }
 
-          // 地球
+        function drawEarth() {
           let time = new Date()
           let second = time.getSeconds()
           let mill = time.getMilliseconds()
+
           ctx.save() // earth start
           ctx.translate(150, 150)
           // 地球旋转
@@ -59,6 +71,14 @@
           ctx.drawImage(earth, -12, -12) // 背景图
 
           // 绘制月球
+          drawMoon(second, mill)
+
+          // 绘制地球的蒙板
+          drawEarthMask()
+          ctx.restore() // earth end
+        }
+
+        function drawMoon(second, mill) {
           ctx.save() // moon start
           // 月球旋转
           ctx.rotate(((Math.PI * 2) / (10 * 1000)) * (second * 1000 + mill))
@@ -66,17 +86,13 @@
           ctx.translate(0, 28)
           ctx.drawImage(moon, -3.5, -3.5) // 背景图
           ctx.restore() // moon end
+        }
 
-          // 绘制地球的蒙板
+        function drawEarthMask() {
           ctx.save()
           ctx.fillStyle = 'rgba(0,0,0,0.5)'
           ctx.fillRect(0, -12, 40, 24)
           ctx.restore()
-
-          ctx.restore() // earth end
-
-          ctx.restore()
-          requestAnimationFrame(draw)
         }
       }
     </script>
