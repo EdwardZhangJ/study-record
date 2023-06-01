@@ -44,15 +44,19 @@
           message: 'Hello World',
           name: 'edward',
         }
+
+        // 对需要绑定的方法，提前绑定好this
+        this.btnClick = this.btnClick.bind(this)
       }
       // 组件方法(实例方法)
-      btnClick () {
-        debugger
-        console.log('btnClick', this);
+      btnClick() {
+        // 内部完成了两件事： 1. 将state.message值修改掉 2. 自动重新执行render函数渲染
         this.setState({
           message: 'Hello React'
         })
       }
+
+
 
       // 渲染内容 render 方法
       render() {
@@ -65,6 +69,15 @@
       }
     }
 
+    // this绑定问题
+    // const app = new App();
+    // const foo = app.btnClick
+    // foo() // 默认绑定 => window => 严格模式下 => undefined
+
+    // function bar() {
+    //   console.log('bar', this);
+    // }
+    // bar() // babel 编译后 => "use strict"; => undefined
     const root = ReactDOM.createRoot(document.querySelector('#root'))
     root.render(<App />)
   </script>
