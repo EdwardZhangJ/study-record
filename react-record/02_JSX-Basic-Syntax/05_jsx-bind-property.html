@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script src="../lib/react.js"></script>
+  <script src="../lib/react-dom.js"></script>
+  <script src="../lib/babel.js"></script>
+
+  <script type="text/babel">
+
+    // 1. 定义App 组件
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          message: 'Hello World',
+          imgUrl: 'https://tse2-mm.cn.bing.net/th/id/OIP-C.7S9azHGsc_NP6RzdyhImHwHaLH?pid=ImgDet&rs=1',
+          href: 'https://www.baidu.com/',
+          isActive: true,
+        }
+      }
+
+      render() {
+        const { message, imgUrl, href, isActive } = this.state
+        // 需求 isActive: true -> active
+        // 1. class绑定写法一：字符串拼接
+        const className = `abc cba ${isActive ? 'active' : ''}`
+        // 2. class绑定写法二：将所有的class放到数组中
+        const classList = ['abc', 'cba']
+        if (isActive) classList.push('active')
+        // 3. class绑定写法三：classnames库
+        const styleObj = {
+          color: 'red',
+          fontSize: '30px',
+        }
+        return (
+          <div>
+            {/* 1. 基本绑定*/}
+            <h2 title={message}>{message}</h2>
+            <img src={imgUrl} alt="" />
+            <a href={href}>百度</a>
+
+            {/* 2. 绑定class属性*/}
+            <h2 className={className}>Hello World</h2>
+            <h2 className={classList.join(" ")}>Hello World</h2>
+
+            {/* 3. 绑定style属性  */}
+            <h2 style={{ color: 'red', fontSize: '30px', }}>呵呵呵</h2>
+            <h2 style={styleObj}>呵呵呵</h2>
+          </div>
+        )
+      }
+    }
+
+    // 2. 创建root根并且渲染App组件
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<App />)
+  </script>
+
+</body>
+
+</html>
