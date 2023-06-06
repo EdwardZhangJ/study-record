@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script src="../lib/react.js"></script>
+  <script src="../lib/react-dom.js"></script>
+  <script src="../lib/babel.js"></script>
+
+  <script type="text/babel">
+
+    // 1. 定义App 组件
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          message: 'Hello World',
+          isReady: true,
+          friend: {
+            name: 'kobe',
+            desc: '凌晨四点钟的太阳，我在练球',
+          }
+        }
+      }
+
+      render() {
+        const { isReady, friend } = this.state
+        // 1. 条件判断方式： 使用if进行判断
+        let showMessage = null
+        if (isReady) {
+          showMessage = <h1>准备好了</h1>
+        } else {
+          showMessage = <h1>没准备好</h1>
+        }
+        return (
+          <div>
+            {/* 1. 方式一： 根据条件给变量赋值不同的内容 */}
+            <div>{showMessage} </div>
+            {/* 2. 方式二： 三元运算符 */}
+            <div>{isReady ? <button>开始战斗吧</button> : <h3>赶紧准备</h3>} </div>
+
+            {/* 3. 方式三： 逻辑与运算符&& */}
+            <div>{friend && <div>{friend.name + ' ' + friend.desc}</div>}</div>
+          </div>
+        )
+      }
+    }
+
+    // 2. 创建root根并且渲染App组件
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<App />)
+  </script>
+
+</body>
+
+</html>

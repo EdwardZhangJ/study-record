@@ -6,6 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .active-color {
+      color: red;
+    }
+
+  </style>
 </head>
 
 <body>
@@ -21,38 +27,37 @@
         super()
 
         this.state = {
-          message: 'hello world'
+          currentIndex: 0,
+          movies: ['星际穿越', '盗梦空间', '大话西游', '少年派'],
         }
       }
 
-      btnClick(event, name, age) {
-        console.log('btnClick', event)
-        console.log('name age', name, age)
+      liClick(index) {
+        this.setState({
+          currentIndex: index
+        })
       }
-
       render() {
-        const { message } = this.state
+        const { movies, currentIndex } = this.state
+        const liEls = movies.map((item, index) => {
+          return (
+            <li
+              key={index}
+              className={index === currentIndex ? 'active-color' : ''}
+              onClick={() => this.liClick(index)} >{item}</li>
+          )
+        })
         return (
           <div>
-            {/* 1. event 参数的传递 */}
-            <button onClick={this.btnClick.bind(this)}>按钮</button>
-            <button onClick={(e) => this.btnClick(e)}>按钮</button>
-
-            {/* 2. 其他参数传递 */}
-            <button onClick={this.btnClick.bind(this, 'kobe', '30')}>按钮（Not Recommend）</button>
-            <button onClick={(event) => this.btnClick(event, 'why', 18)}>按钮</button>
-
-
-          </div>
+            <ul> {liEls} </ul>
+          </div >
         )
       }
     }
 
     const root = ReactDOM.createRoot(document.getElementById('root'))
-    root.render(<App />)
-
+    root.render(<App />)  
   </script>
-
 </body>
 
 </html>
