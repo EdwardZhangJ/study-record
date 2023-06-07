@@ -22,32 +22,30 @@
         super()
         this.state = {
           message: 'Hello World',
-          isReady: true,
-          friend: {
-            name: 'kobe',
-            desc: '凌晨四点钟的太阳，我在练球',
-          }
+          isShowFlag: true,
         }
       }
 
+      shiftState() {
+        this.setState({
+          isShowFlag: !this.state.isShowFlag
+        })
+      }
+
       render() {
-        const { isReady, friend } = this.state
-        // 1. 条件判断方式： 使用if进行判断
-        let showMessage = null
-        if (isReady) {
-          showMessage = <h1>准备好了</h1>
-        } else {
-          showMessage = <h1>没准备好</h1>
-        }
+        const { message, isShowFlag } = this.state
+        // let showElement = null
+        // if (isShowFlag) {
+        //   showElement = <h2>{message}</h2>
+        // }
         return (
           <div>
-            {/* 1. 方式一： 根据条件给变量赋值不同的内容 */}
-            <div>{showMessage} </div>
-            {/* 2. 方式二： 三元运算符 */}
-            <div>{isReady ? <button>开始战斗吧</button> : <h3>赶紧准备</h3>} </div>
+            <button onClick={() => this.shiftState()}>切换</button>
+            {/* {showElement} */}
+            {isShowFlag && <h2>{message}</h2>}
 
-            {/* 3. 方式三： 逻辑与运算符&& */}
-            <div>{friend && <div>{friend.name + ' ' + friend.desc}</div>}</div>
+            {/* v-show 的效果*/}
+            <h2 style={{display: isShowFlag ? 'block' : 'none'}}>哈哈哈</h2>
           </div>
         )
       }
