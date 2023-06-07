@@ -5,7 +5,19 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>购物车案例</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    td,
+    th {
+      padding: 10px 16px;
+      border: 1px solid #ddd;
+    }
+
+  </style>
 </head>
 
 <body>
@@ -13,6 +25,8 @@
   <script src="../lib/react.js"></script>
   <script src="../lib/react-dom.js"></script>
   <script src="../lib/babel.js"></script>
+  <script src="./data.js"></script>
+  <script src="./format.js"></script>
 
   <script type="text/babel">
 
@@ -21,16 +35,66 @@
       constructor() {
         super()
         this.state = {
-          message: 'Hello World',
+          books: books
         }
       }
 
-      render() {
-        const { message } = this.state
+      getTotalPrice() {
+        return formatPrice(this.state.books.reduce((pre, item) => {
+          return pre + item.price * item.count
+        }, 0))
+      }
+      changeCount(index, count) {
+        const books = [...this.state.books]
+        books[index].count += count
+        this.setState({ books })
+      }
+      removeItem(index) {
+        const books = [...this.state.books]
+        books.splice(index, 1)
+        this.setState({ books })
+      }
 
+      render() {
+        const { books } = this.state
         return (
           <div>
-            <h2>{message}</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>序号</th>
+                  <th>书籍名称</th>
+                  <th>出版日期</th>
+                  <th>价格</th>
+                  <th>购买数量</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  books.map((item, index) => {
+                    return (
+                      <tr key={item.id}>
+                        <td>{index + 1}</td>
+                        <td>{item.name}</td>
+                        <td>{item.date}</td>
+                        <td>{formatPrice(item.price)}</td>
+                        <td>
+                          <button 
+                            disabled={item.count <= 1} 
+                            onClick={() => this.changeCount(index, -1)}>-</button>
+                          {item.count}
+                          <button onClick={()=> this.changeCount(index, 1)}>+</button>
+                        </td>
+                        <td><button onClick={() => this.removeItem(index)}>移除</button></td>
+                      </tr>
+                    )
+                  })
+                }
+              </tbody>
+            </table>
+
+            <h2>{`总价格： ${this.getTotalPrice()}`}</h2>
           </div>
         )
       }
