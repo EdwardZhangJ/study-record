@@ -35,13 +35,27 @@ export class HelloWorld extends Component {
   }
 
   // 4. 组件被更新： 被挂载到 componentDidUpdate
-  componentDidUpdate(){
-    console.log('componentDidUpdate');
+  componentDidUpdate(prevProps, prevState, snapshot){
+    console.log('componentDidUpdate', prevProps, prevState, snapshot);
   }
 
   // 5. 组件被卸载： 被挂载到 componentWillUnmount
   componentWillUnmount(){
     console.log('componentWillUnmount');
+  }
+
+  // 不常用的生命周期函数补充
+  shouldComponentUpdate(){
+    console.log('shouldComponentUpdate');
+    return true
+  }
+
+  // 用于获取DOM更新前的一些信息
+  getSnapshotBeforeUpdate(){
+    console.log('getSnapshotBeforeUpdate');
+    return {
+      scrollPosition: 1000
+    }
   }
 }
 
