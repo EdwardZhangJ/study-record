@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
 
 export class MainProductList extends Component {
+  // 下面super(props)会自动执行
+  // constructor(props) {
+  //   super(props)
+  // }
   render() {
+    const { productList } = this.props
     return (
       <div>
         <h2>商品列表</h2>
         <ul>
-          <li>商品item01</li>
-          <li>商品item02</li>
-          <li>商品item03</li>
-          <li>商品item04</li>
+          {
+            productList.map((item, index) => {
+              return <li key={index}>{item}</li>
+            })
+          }
         </ul>
       </div>
     )
