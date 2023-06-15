@@ -2,14 +2,18 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 export class MainBanner extends Component {
+  // static defaultProps = {
+  //   banners: [],
+  //   title: '默认标题'
+  // }
   constructor(props) {
-    console.log('MainBanner', props);
     super(props)
+    this.state = {}
   }
   render() {
     const { banners, title } = this.props
     return (
-      <div>
+      <div className='banner'>
         <h2>轮播图: {title}</h2>
         <ul>
           {
@@ -24,8 +28,13 @@ export class MainBanner extends Component {
 }
 
 MainBanner.propTypes = {
-  banners: PropTypes.array.isRequired,
+  banners: PropTypes.array,
   title: PropTypes.string
+}
+
+MainBanner.defaultProps = {
+  banners: [],
+  title: '默认标题'
 }
 
 export default MainBanner
