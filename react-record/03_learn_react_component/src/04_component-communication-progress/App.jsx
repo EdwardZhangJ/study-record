@@ -1,16 +1,26 @@
 import React, { Component } from 'react'
-import Footer from './c-cpns/Footer'
-import Header from './c-cpns/Header'
-import Main from './c-cpns/Main'
-import './style.css'
+import AddCounter from './child-to-parent/AddCounter'
+import SubCounter from './child-to-parent/SubCounter'
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      counter: 100
+    }
+  }
+  changeCounter(e) {
+    this.setState({
+      counter: e + this.state.counter
+    })
+  }
   render() {
+    const {counter} = this.state
     return (
-      <div className='app'>
-        <Header />
-        <Main />
-        <Footer />
+      <div>
+        <h2>当前计数： {counter}</h2>
+        <AddCounter addClick={(e)=> {this.changeCounter(e)}}/>
+        <SubCounter subCount={(e)=> {this.changeCounter(e)}}/>
       </div>
     )
   }
