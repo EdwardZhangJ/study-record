@@ -27,7 +27,7 @@ export class Main extends Component {
     return (
       <div>
         Main
-        <MainBanner banners={banners} />
+        <MainBanner banners={banners} title="MainBanner组件"/>
         <MainProductList productList={productList}/>
       </div>
     )
