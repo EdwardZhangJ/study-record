@@ -11,7 +11,6 @@ export class AddCounter extends Component {
         <button onClick={() => this.addCount(1)}>+1</button>
         <button onClick={() => this.addCount(5)}>+5</button>
         <button onClick={() => this.addCount(10)}>+10</button>
-
       </div>
     )
   }
