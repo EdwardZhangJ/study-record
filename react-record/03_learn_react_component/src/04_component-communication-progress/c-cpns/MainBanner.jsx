@@ -16,8 +16,8 @@ export class MainBanner extends Component {
         <h2>轮播图: {title}</h2>
         <ul>
           {
-            banners.map((item, index) => {
-              return <li key={index}>{item}</li>
+            banners.map((item) => {
+              return <li key={item.acm}>{item.title}</li>
             })
           }
         </ul>

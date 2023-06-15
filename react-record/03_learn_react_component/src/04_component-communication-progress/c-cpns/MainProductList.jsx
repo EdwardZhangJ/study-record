@@ -13,7 +13,7 @@ export class MainProductList extends Component {
         <ul>
           {
             productList.map((item, index) => {
-              return <li key={index}>{item}</li>
+              return <li key={item.acm}>{item.title}</li>
             })
           }
         </ul>
