@@ -7,7 +7,7 @@ export class HomeInfo extends Component {
     console.log(this.context)
     return (
       <div>
-        {this.context.name} - {this.context.age}
+        Home Info: {this.context.color} 
       </div>
     )
   }
