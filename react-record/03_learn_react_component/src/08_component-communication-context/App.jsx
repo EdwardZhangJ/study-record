@@ -1,0 +1,36 @@
+import React, { Component } from 'react'
+import Home from './Home'
+import ThemeContext from './context/theme-context'
+
+
+export class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      info:{
+        name: 'kobe',
+        age: 30
+      }
+    }
+  }
+  render() {
+    const {info} = this.state
+    return (
+      <div>
+        <h2>App</h2>
+        {/* 1. 给 Home 传递数据 */}
+        {/* <Home name={'kobe'} age={18}/>
+        <Home name={info.name} age={info.age}/>
+        <Home {...info}/> */}
+
+        {/* 2. 使用 Context 传递数据 */}
+        {/* 第二步操作：使用Context对象中的 Provider 为后台提供数据 */}
+        <ThemeContext.Provider value={info}>
+          <Home {...info}/>
+        </ThemeContext.Provider>
+      </div>
+    )
+  }
+}
+
+export default App
