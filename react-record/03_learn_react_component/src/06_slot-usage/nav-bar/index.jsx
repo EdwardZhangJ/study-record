@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+// import PropTypes from 'prop-types'
 import './style.css'
 export class NavBar extends Component {
 
@@ -13,5 +14,9 @@ export class NavBar extends Component {
     )
   }
 }
+
+// NavBar.propTypes = {
+//   children: PropTypes.element
+// }
 
 export default NavBar
