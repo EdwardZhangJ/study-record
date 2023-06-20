@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import {flushSync} from 'react-dom'
 export class App extends Component {
   constructor() {
     super()
@@ -13,7 +13,10 @@ export class App extends Component {
     setTimeout(() => {
       // 在React18之前，setTimeout中的setState是同步的操作
       // 在React18之后，setTimeout中的setState是异步操作(批处理)
-      this.setState({message: '你好啊，李银河！'})
+      flushSync(() => {
+
+        this.setState({message: '你好啊，李银河！'})
+      })
       console.log('-------------', this.state.message);
     }, 0);
   }
