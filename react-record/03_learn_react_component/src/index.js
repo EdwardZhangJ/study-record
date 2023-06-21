@@ -13,7 +13,8 @@ import ReactDOM from 'react-dom/client';
 // import App from './10_setState-detail-usage/App'
 // import App from './11_optimization-render-function/App'
 // import App from './12_react-data-immutable-power/App'
-import App from './13_react-ref-dom/App'
+// import App from './13_react-ref-dom/App'
+import App from './14_component-controlled&uncontrolled/App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render( <App /> );
