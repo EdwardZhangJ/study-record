@@ -11,7 +11,8 @@ import ReactDOM from 'react-dom/client';
 // import App from './08_component-communication-context/App'
 // import App from './09_component-communication-eventbus/App'
 // import App from './10_setState-detail-usage/App'
-import App from './11_optimization-render-function/App'
+// import App from './11_optimization-render-function/App'
+import App from './12_react-data-immutable-power/App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render( <App /> );

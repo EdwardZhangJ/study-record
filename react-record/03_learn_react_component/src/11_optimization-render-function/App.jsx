@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Home from './Home'
 import Recommend from './Recommend'
+import Profile from './Profile'
 
 export class App extends Component {
   shouldComponentUpdate(nextProps, nextState) {
@@ -35,6 +36,7 @@ export class App extends Component {
         <button onClick={e=>this.increment()}>counter + 1</button>
         <Home message={message}/>
         <Recommend counter={counter}/>
+        <Profile message={message}/>
       </div>
     )
   }
