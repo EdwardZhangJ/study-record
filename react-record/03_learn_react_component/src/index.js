@@ -10,7 +10,8 @@ import ReactDOM from 'react-dom/client';
 // import App from './07_compoennt-scoped-slot/App'
 // import App from './08_component-communication-context/App'
 // import App from './09_component-communication-eventbus/App'
-import App from './10_setState-detail-usage/App'
+// import App from './10_setState-detail-usage/App'
+import App from './11_optimization-render-function/App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render( <App /> );
