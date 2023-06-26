@@ -1,5 +1,5 @@
 
-import React, { createRef, PureComponent } from 'react'
+import React, { PureComponent } from 'react'
 
 export class App extends PureComponent {
 
@@ -7,8 +7,8 @@ export class App extends PureComponent {
     super()
 
     this.state = {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
       isAgree: true,
       hobbies: [
         {value: 'sing', text: '唱', isChecked: false},
@@ -16,14 +16,7 @@ export class App extends PureComponent {
         {value: 'rap', text: 'rap', isChecked: false},
       ],
       fruit: ['orange'],
-      intro: '',
     }
-    this.introRef = createRef()
-  }
-  componentDidMount() {
-    this.introRef.current.addEventListener('change',(e) => {
-      console.log(e);
-    })
   }
 
   handleSubmitClick(event) {
@@ -34,7 +27,7 @@ export class App extends PureComponent {
     console.log("获取所有的输入内容")
     console.log(this.state.username, this.state.password)
     console.log('获取爱好', this.state.hobbies.filter(item => item.isChecked).map(item => item.text))
-    console.log('获取非受控组件结果', this.introRef.current.value)
+
     // 3.以网络请求的方式, 将数据传递给服务器(ajax/fetch/axios)
   }
 
@@ -76,7 +69,7 @@ export class App extends PureComponent {
 
   
   render() {
-    const { username, password, isAgree, hobbies, fruit, intro } = this.state
+    const { username, password, isAgree, hobbies, fruit } = this.state
 
     return (
       <div>
@@ -140,6 +133,7 @@ export class App extends PureComponent {
               <input type="checkbox" id="rap" />rap
             </label> */}
             {/* 4. select  */}
+
             <div>
               <select value={fruit} onChange={e => this.handleFruitChange(e)} multiple>
                 <option value="apple">苹果</option>
@@ -147,9 +141,6 @@ export class App extends PureComponent {
                 <option value="banana">香蕉</option>
               </select>
             </div>
-
-            {/* 5. 非受控组件 */}
-            <input type="text" defaultValue={intro} ref={this.introRef} />
           </div>
 
           <div>
