@@ -15,7 +15,6 @@ export class App extends PureComponent {
         {value: 'dance', text: '跳', isChecked: false},
         {value: 'rap', text: 'rap', isChecked: false},
       ],
-      fruit: ['orange'],
     }
   }
 
@@ -54,22 +53,9 @@ export class App extends PureComponent {
     hobbies[index].isChecked = event.target.checked
     this.setState({ hobbies })
   }
-
-  handleFruitChange(event) { 
-    const options = Array.from(event.target.selectedOptions)
-    const values = options.map(item => item.value)
-    this.setState({ fruit: values })
-
-    // 额外补充 Array.from(可迭代对象)
-    // Array.from(arguments)
-
-    const values2 = Array.from(event.target.selectedOptions, item => item.value)
-    console.log(values2);
-  }
-
   
   render() {
-    const { username, password, isAgree, hobbies, fruit } = this.state
+    const { username, password, isAgree, hobbies } = this.state
 
     return (
       <div>
@@ -132,18 +118,6 @@ export class App extends PureComponent {
             <label htmlFor="rap">
               <input type="checkbox" id="rap" />rap
             </label> */}
-            {/* 4. select  */}
-
-            <div>
-              <select value={fruit} onChange={e => this.handleFruitChange(e)} multiple>
-                <option value="apple">苹果</option>
-                <option value="orange">橘子</option>
-                <option value="banana">香蕉</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
             <button type='submit'>注册</button>
           </div>
         </form>
