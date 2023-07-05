@@ -18,7 +18,8 @@ import ReactDOM from 'react-dom/client';
 // import App from './15_react-higher-order-component/App'
 // import App from './16_react-Portals/App'
 // import App from './17_react-fragment/App'
-import App from './18_react-strict-mode/App'
+// import App from './18_react-strict-mode/App'
+import App from './19_react-animation/App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render( <App /> );
