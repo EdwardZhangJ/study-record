@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 
 function logRenderTime(OriginComponent) {
-  return class NewComponent extends PureComponent {
+  return class extends PureComponent {
     UNSAFE_componentWillMount() {
       this.beginTime = new Date().getTime()
     }
