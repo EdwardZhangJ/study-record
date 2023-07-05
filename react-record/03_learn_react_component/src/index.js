@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { StrictMode } from 'react';
 // import App from './App_class';
 // import App from './01_component-class&function/App_func';
 // import App from './02_component-life-cycle/App'
@@ -19,7 +20,12 @@ import ReactDOM from 'react-dom/client';
 // import App from './16_react-Portals/App'
 // import App from './17_react-fragment/App'
 // import App from './18_react-strict-mode/App'
-import App from './19_react-animation/App'
+import App from './19_react-animation/01_transition-animation/App'
+// import App from './19_react-animation/02_SwitchTransition/App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render( <App /> );
+root.render( 
+  <StrictMode>
+    <App /> 
+  </StrictMode>
+);
