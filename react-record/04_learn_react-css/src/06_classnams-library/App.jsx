@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-
+import classNames from 'classnames'
 export class App extends PureComponent {
   constructor() {
     super()
@@ -19,6 +19,7 @@ export class App extends PureComponent {
       <div>
         <h2 className={classNamesList}>哈哈哈</h2>
         <h2 className={`aaa ${isBBB ? 'bbb': ''} ${isCCC ? 'ccc':''}`}>哈哈哈</h2>
+        <h2 className={classNames('aaa', {bbb: isBBB}, {ccc: isCCC})}>嘿嘿嘿</h2>
       </div>
     )
   }
