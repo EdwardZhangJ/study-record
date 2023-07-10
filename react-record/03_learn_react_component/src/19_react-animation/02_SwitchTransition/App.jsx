@@ -1,9 +1,29 @@
 import React, { PureComponent } from 'react'
-
+import { CSSTransition, SwitchTransition } from 'react-transition-group'
+import './style.css'
 export class App extends PureComponent {
+  constructor() {
+    super()
+    this.state = {
+      isLogin: true
+    }
+  }
   render() {
+    const { isLogin } = this.state
     return (
-      <div>App</div>
+      <div>
+        <SwitchTransition mode="out-in">
+          <CSSTransition
+            key={isLogin ? 'logout' : 'login'}
+            classNames="login"
+            timeout={1000}
+            >
+            <button onClick={e => this.setState({isLogin: !isLogin})}>
+              {isLogin ? '退出': '登录'}
+            </button>
+          </CSSTransition>
+        </SwitchTransition>
+      </div>
     )
   }
 }

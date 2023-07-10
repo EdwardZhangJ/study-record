@@ -20,12 +20,15 @@ import { StrictMode } from 'react';
 // import App from './16_react-Portals/App'
 // import App from './17_react-fragment/App'
 // import App from './18_react-strict-mode/App'
-import App from './19_react-animation/01_transition-animation/App'
+// import App from './19_react-animation/01_transition-animation/App'
 // import App from './19_react-animation/02_SwitchTransition/App'
+import App from './19_react-animation/03_TransitionGroup/App'
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render( 
-  <StrictMode>
-    <App /> 
-  </StrictMode>
+  <App />
+  // <StrictMode>
+  //   <App /> 
+  // </StrictMode>
 );
