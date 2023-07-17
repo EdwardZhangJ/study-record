@@ -7,3 +7,13 @@ export const subNumberAction = (num) => ({
   type: actionTypes.SUB_NUMBER,
   num,
 })
+
+export const changeBannerAction = (banners) => ({
+  type: actionTypes.CHANGE_BANNERS,
+  banners,
+})
+
+export const changeRecommendAction = (recommends) => ({
+  type: actionTypes.CHANGE_RECOMMENDS,
+  recommends,
+})
