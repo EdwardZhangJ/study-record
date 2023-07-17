@@ -1,14 +1,22 @@
+import * as actionTypes from './constants'
+
 const initialState = {
-  counter: 0
+  counter: 100,
 }
 
-function reducer(state=initialState, action) {
+function reducer(state = initialState, action) {
   switch (action.type) {
-    case 'value':
-      
-      break;
-  
+    case actionTypes.ADD_NUMBER:
+      return {
+        ...state, counter: state.counter + action.num
+      }
+    case actionTypes.SUB_NUMBER:
+      return {
+        ...state, counter: state.counter - action.num
+      }
     default:
-      break;
+      return state
   }
 }
+
+export default reducer
