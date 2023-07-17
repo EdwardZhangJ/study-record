@@ -5,6 +5,7 @@ import About from './pages/About'
 import Category from './pages/Category'
 import './style.css'
 import store from './store'
+import CategoryNew from './pages/CategoryNew'
 
 export class App extends PureComponent {
   
@@ -30,7 +31,8 @@ export class App extends PureComponent {
           <Home />
           <Profile />
           <About />
-          <Category />
+          {/* <Category /> */}
+          <CategoryNew />
         </div>
       </div>
     )
