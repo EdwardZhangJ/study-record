@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
 import About from './pages/About'
-import Category from './pages/Category'
+// import Category from './pages/Category'
 import './style.css'
 import store from './store'
 import CategoryNew from './pages/CategoryNew'
@@ -12,12 +12,12 @@ export class App extends PureComponent {
   constructor() {
     super()
     this.state = {
-      counter: store.getState().counter
+      counter: store.getState().counter.counter
     }
   }
   componentDidMount() {
     store.subscribe(() => {
-      const state = store.getState()
+      const state = store.getState().counter
       this.setState({counter: state.counter})
     })
   }

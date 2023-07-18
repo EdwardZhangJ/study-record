@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { addNumberAction, subNumberAction } from '../store/counter';
+import { addNumberAction, subNumberAction } from '../store/actionCreators';
 export class About extends PureComponent {
   calculateNum(num) {
      if(num > 0) {
@@ -65,9 +65,9 @@ export class About extends PureComponent {
 //   }
 // }
 const mapStateToProps = state => ({
-  counter: state.counter.counter,
-  banners: state.home.banners,
-  recommends: state.home.recommends
+  counter: state.counter,
+  banners: state.banners,
+  recommends: state.recommends
 })
 
 const mapDispatchToProps = dispatch => ({

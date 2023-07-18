@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { changeBannerAction, changeRecommendAction } from '../store/home';
+import { changeBannerAction, changeRecommendAction } from '../store/actionCreators';
 
 export class Category extends PureComponent {
   componentDidMount() {
