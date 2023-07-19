@@ -14,4 +14,7 @@ const counterSlice = createSlice({
     }
   }
 })
+
+export const { addNumber, subNumber } = counterSlice.actions
+
 export default counterSlice.reducer
