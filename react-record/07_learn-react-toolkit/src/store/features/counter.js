@@ -1,0 +1,17 @@
+import { createSlice } from '@reduxjs/toolkit'
+
+const counterSlice = createSlice({
+  name: 'counter',
+  initialState: {
+    counter: 999
+  },
+  reducers: {
+    addNumber: (state, action)=> {
+      state.counter += action.payload
+    },
+    subNumber: (state, action)=> {
+      state.counter -= action.payload
+    }
+  }
+})
+export default counterSlice.reducer
