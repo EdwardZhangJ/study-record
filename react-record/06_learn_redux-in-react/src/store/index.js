@@ -1,10 +1,10 @@
 // combineReducers  applyMiddleware
-import {createStore, compose, } from 'redux'
+import {createStore, compose} from 'redux'
 // import thunk from "redux-thunk"
 import counterReducer from './counter'
 import homeReducer from './home'
 import userReducer from './user'
-import log from './middleware/log'
+import {log, thunk, applyMiddleware} from './middleware'
 
 // 奖两个reducer函数合并
 // const reducer = combineReducers({
@@ -21,24 +21,12 @@ function reducer(state = {}, action) {
   }
 }
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(reducer)
 // const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)))
 
-
-log(store)
-
-function thunk(store) {
-  const next = store.dispatch
-  function thunkAndDispatch(action) {
-    if (typeof action === 'function') {
-      action(store.dispatch, store.getState)
-    } else {
-      next(action)
-    }
-  }
-  store.dispatch = thunkAndDispatch
-}
-thunk(store)
+// log(store)
+// thunk(store)
+applyMiddleware(store, log, thunk)
 
 export default store
