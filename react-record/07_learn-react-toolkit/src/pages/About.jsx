@@ -19,6 +19,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addNumber: (number) => dispatch(addNumber(number)),
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(About)
