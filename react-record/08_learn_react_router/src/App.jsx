@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
-import {Link, Route, Routes} from 'react-router-dom'
+import {Link, NavLink, Route, Routes} from 'react-router-dom'
 import About from './pages/About'
 import Home from './pages/Home'
-
+import './index.css'
 export class App extends PureComponent {
   render() {
     return (
@@ -10,8 +10,14 @@ export class App extends PureComponent {
       <div className="header">
         <span>header</span>
         <div className="nav">
-          <Link to='/home'>首页</Link>
-          <Link to='/about'>关于</Link>
+          {/* <Link to='/home'>首页</Link>
+          <Link to='/about'>关于</Link> */}
+          
+          {/* <NavLink NavLink to='/home'>首页</NavLink>
+          <NavLink to='/about'>关于</NavLink> */}
+
+          <NavLink to='/home' style={({isActive})=>({color: isActive ? 'red' : ''})}>首页</NavLink>
+          <NavLink to='/about' style={({isActive})=>({color: isActive ? 'red' : ''})}>关于</NavLink>
         </div>
         <hr />
       </div>
