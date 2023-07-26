@@ -10,6 +10,8 @@ import HomeRanking from './pages/HomeRanking'
 import Category from './pages/Category'
 import Order from './pages/Order'
 import HomeSongMenu from './pages/HomeSongMenu'
+import Detail from './pages/Detail'
+import User from './pages/User'
 
 // Link, NavLink
 
@@ -75,19 +77,21 @@ export function App (props) {
     <div className="header">
       <span>header</span>
       <div className="nav">
-      {/* <Link to='/home'>首页</Link>
-      <Link to='/about'>关于</Link> */}
-      
-      {/* <NavLink NavLink to='/home'>首页</NavLink>
-      <NavLink to='/about'>关于</NavLink> */}
+        {/* <Link to='/home'>首页</Link>
+        <Link to='/about'>关于</Link> */}
+        
+        {/* <NavLink NavLink to='/home'>首页</NavLink>
+        <NavLink to='/about'>关于</NavLink> */}
 
-      <NavLink to='/home' style={({isActive})=>({color: isActive ? 'red' : ''})}>首页</NavLink>
-      <NavLink to='/about' style={({isActive})=>({color: isActive ? 'red' : ''})}>关于</NavLink>
+        <NavLink to='/home' style={({isActive})=>({color: isActive ? 'red' : ''})}>首页</NavLink>
+        <NavLink to='/about' style={({isActive})=>({color: isActive ? 'red' : ''})}>关于</NavLink>
 
-      <Link to='/login'>登陆</Link>
+        <Link to='/login'>登陆</Link>
 
-      <button onClick={e => navigateTo('/category')}>分类</button>
-      <span onClick={e => navigateTo('/order')}>订单</span>
+        <button onClick={e => navigateTo('/category')}>分类</button>
+        <span onClick={e => navigateTo('/order')}>订单</span>
+
+        <Link to='/user?name=why&age=18'>用户</Link>
       </div>
       <hr />
     </div>
@@ -105,6 +109,8 @@ export function App (props) {
         <Route path='/login' element={<Login />}/>
         <Route path='/category' element={<Category />}/>
         <Route path='/order' element={<Order />}/>
+        <Route path='/detail/:id' element={<Detail />}/>
+        <Route path='/user' element={<User />} />
         <Route path='*' element={<NotFound />}/>
       </Routes>
     </div>

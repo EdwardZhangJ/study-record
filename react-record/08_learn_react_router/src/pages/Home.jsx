@@ -3,9 +3,9 @@ import { Link, Outlet } from 'react-router-dom'
 import {withRouter} from '../hoc/index'
 export class Home extends PureComponent {
 
-  navigateTo(path) {
-    const { navigateTo } = this.props.router
-    navigateTo(path)
+  navigate(path) {
+    const { navigate } = this.props.router
+    navigate(path)
   }
   
   render() {
@@ -15,7 +15,7 @@ export class Home extends PureComponent {
         <div className='home-nav'>
           <Link to='/home/recommend'>推荐</Link>
           <Link to='/home/ranking'>排行榜</Link>
-          <button onClick={e => this.navigateTo('/home/songmenu')}>歌单</button>
+          <button onClick={e => this.navigate('/home/songmenu')}>歌单</button>
         </div>
         {/* 占位组件 */}
         <Outlet />
@@ -28,7 +28,7 @@ export class Home extends PureComponent {
 // function withRouter(WrapperComponent) {
 //   return function (props) {
 //     const navigate = useNavigate()
-//     const router = {navigateTo: navigate}
+//     const router = {navigate: navigate}
 //     return <WrapperComponent {...props} router={router} />
 //   }
 // }
