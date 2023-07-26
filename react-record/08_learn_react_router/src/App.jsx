@@ -5,6 +5,8 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import './index.css'
 import NotFound from './pages/NotFound'
+import HomeRecommend from './pages/HomeRecommend'
+import HomeRanking from './pages/HomeRanking'
 
 // Link, NavLink
 
@@ -34,7 +36,11 @@ export class App extends PureComponent {
         {/* 映射关系： path => Component  */}
         <Routes>
           <Route path='/' element={<Navigate to='/home' />}/>
-          <Route path='/home' element={<Home />}/>
+          <Route path='/home' element={<Home />}>
+            <Route path='/home' element={<Navigate to='/home/recommend' />}/>
+            <Route path='/home/recommend' element={<HomeRecommend />}/>
+            <Route path='/home/ranking' element={<HomeRanking />}/>
+          </Route>
           <Route path='/about' element={<About />}/>
           <Route path='/login' element={<Login />}/>
           <Route path='*' element={<NotFound />}/>
