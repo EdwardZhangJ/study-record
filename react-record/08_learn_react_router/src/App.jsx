@@ -9,6 +9,7 @@ import HomeRecommend from './pages/HomeRecommend'
 import HomeRanking from './pages/HomeRanking'
 import Category from './pages/Category'
 import Order from './pages/Order'
+import HomeSongMenu from './pages/HomeSongMenu'
 
 // Link, NavLink
 
@@ -98,6 +99,7 @@ export function App (props) {
           <Route path='/home' element={<Navigate to='/home/recommend' />}/>
           <Route path='/home/recommend' element={<HomeRecommend />}/>
           <Route path='/home/ranking' element={<HomeRanking />}/>
+          <Route path='/home/songmenu' element={<HomeSongMenu />} />
         </Route>
         <Route path='/about' element={<About />}/>
         <Route path='/login' element={<Login />}/>
