@@ -4,6 +4,7 @@ import About from './pages/About'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import './index.css'
+import NotFound from './pages/NotFound'
 
 // Link, NavLink
 
@@ -36,6 +37,7 @@ export class App extends PureComponent {
           <Route path='/home' element={<Home />}/>
           <Route path='/about' element={<About />}/>
           <Route path='/login' element={<Login />}/>
+          <Route path='*' element={<NotFound />}/>
         </Routes>
       </div>
 
