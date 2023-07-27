@@ -1,6 +1,7 @@
-import About from '../pages/About'
+import React from 'react'
+// import About from '../pages/About'
+// import Login from '../pages/Login'
 import Home from '../pages/Home'
-import Login from '../pages/Login'
 import NotFound from '../pages/NotFound'
 import HomeRecommend from '../pages/HomeRecommend'
 import HomeRanking from '../pages/HomeRanking'
@@ -10,6 +11,9 @@ import HomeSongMenu from '../pages/HomeSongMenu'
 import Detail from '../pages/Detail'
 import User from '../pages/User'
 import { Navigate } from 'react-router-dom'
+
+const About = React.lazy(() => import('../pages/About'))
+const Login = React.lazy(() => import('../pages/Login'))
 
 const routes = [
   {
