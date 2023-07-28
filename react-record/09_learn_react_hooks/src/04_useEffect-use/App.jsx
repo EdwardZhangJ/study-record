@@ -3,14 +3,22 @@ import React, { memo, useEffect, useState } from 'react'
 const App = memo(() => {
   const [counter, setCounter] = useState(200)
 
+  // 负责告知react,在执行完当前组件渲染之后要执行的副作用代码
   useEffect(() => {
-    // 当前传入的回调函数会在组件被渲染完成后，自动执行
-    // 网络请求/DOM操作（修改标题）/事件监听
-    document.title = counter
+    // 1. 监听事件
+    // const unsubscribe = store.subscribe(() => {})
+    console.log('监听redux中数据变化，监听eventBus中的why事件');
+    // 返回值: 回调函数 => 组件被重新渲染或者组件卸载时执行
+    return () => {
+      // 2. 执行一些清除操作
+      //  unsubscribe()
+      console.log('取消监听redux中数据变化，取消监听eventBus中的why事件');
+    }
   })
+
   return (
     <div>
-      <h2>当前计数：{counter}</h2>
+      <h2>counter: {counter}</h2>
       <button onClick={e => setCounter(counter + 1)}>+1</button>
     </div>
   )
