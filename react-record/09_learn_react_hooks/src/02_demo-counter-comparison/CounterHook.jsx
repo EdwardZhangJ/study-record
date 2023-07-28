@@ -3,10 +3,10 @@ import { memo, useState } from "react";
 function CounterHook(props) {
   const [counter, setCounter] = useState(0)
 
-  const [name, setName] = useState('why')
   // if(true) {
   // }
-  console.log(name);
+  // const [name, setName] = useState('why')
+  // console.log(name);
   
   return (
     <div>
