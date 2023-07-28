@@ -16,11 +16,6 @@ const App = memo(() => {
     }
   })
 
-  // 一个函数式组件中，可以存在多个useEffect
-  useEffect(() => {
-    
-  })
-
   return (
     <div>
       <h2>counter: {counter}</h2>
