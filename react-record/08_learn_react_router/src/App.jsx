@@ -1,19 +1,20 @@
 import React from 'react'
-import { Link, Navigate, NavLink, Route, Routes, useNavigate} from 'react-router-dom'
-import About from './pages/About'
-import Home from './pages/Home'
-import Login from './pages/Login'
+import { Link, NavLink, useNavigate, useRoutes} from 'react-router-dom'
+// import About from './pages/About'
+// import Home from './pages/Home'
+// import Login from './pages/Login'
 import './index.css'
-import NotFound from './pages/NotFound'
-import HomeRecommend from './pages/HomeRecommend'
-import HomeRanking from './pages/HomeRanking'
-import Category from './pages/Category'
-import Order from './pages/Order'
-import HomeSongMenu from './pages/HomeSongMenu'
-import Detail from './pages/Detail'
-import User from './pages/User'
+// import NotFound from './pages/NotFound'
+// import HomeRecommend from './pages/HomeRecommend'
+// import HomeRanking from './pages/HomeRanking'
+// import Category from './pages/Category'
+// import Order from './pages/Order'
+// import HomeSongMenu from './pages/HomeSongMenu'
+// import Detail from './pages/Detail'
+// import User from './pages/User'
+import routes from './router'
 
-// Link, NavLink
+// Link, NavLink, Route, Routes,
 
 // export class App extends PureComponent {
 
@@ -97,7 +98,7 @@ export function App (props) {
     </div>
     <div className="content">
       {/* 映射关系： path => Component  */}
-      <Routes>
+      {/* <Routes>
         <Route path='/' element={<Navigate to='/home' />}/>
         <Route path='/home' element={<Home />}>
           <Route path='/home' element={<Navigate to='/home/recommend' />}/>
@@ -112,7 +113,8 @@ export function App (props) {
         <Route path='/detail/:id' element={<Detail />}/>
         <Route path='/user' element={<User />} />
         <Route path='*' element={<NotFound />}/>
-      </Routes>
+      </Routes> */}
+      {useRoutes(routes)}
     </div>
 
     <div className="footer">
