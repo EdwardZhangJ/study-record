@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from 'react'
+import React, { memo, useCallback, useRef, useState } from 'react'
 
 // useCallback性能优化的点
 // 1. 当需要将一个函数传递给子组件时，最好使用useCallback进行优化，将优化之后的函数传递给子组件
@@ -21,10 +21,20 @@ const App = memo(() => {
   const [count, setCount] = useState(0)
   const [message, setMessage] = useState('Hello World')
   // 闭包陷阱
+  // const increment = useCallback(function foo() {
+  //   console.log('执行了increment函数')
+  //   setCount(count + 1)
+  // }, [count])
+
+  // 进一步优化：当count发生改变时，也是用同一个函数(了解)
+  // 做法一：将count依赖移除掉，缺点：闭包陷阱
+  // 做法二：useRef，在组件多长渲染，返回的是同一个值
+  const countRef = useRef()
+  countRef.current = count
   const increment = useCallback(function foo() {
     console.log('执行了increment函数')
-    setCount(count + 1)
-  }, [count])
+    setCount(countRef.current + 1)
+  }, [])
 
   // const increment = () => setCount(count + 1)
 
