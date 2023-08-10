@@ -12,7 +12,8 @@ import { UserContext, ThemeContext } from './05_useContext-use/context'
 // import App from './07_useCallback-useMemo/App'
 // import App from './08_useMemo-use/App'
 // import App from './09_useRef-use/App'
-import App from './10_useImperativeHandle-use/App'
+// import App from './10_useImperativeHandle-use/App'
+import App from './11_useLayoutEffect-use/App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
