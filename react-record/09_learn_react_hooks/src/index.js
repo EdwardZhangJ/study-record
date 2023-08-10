@@ -9,7 +9,8 @@ import { UserContext, ThemeContext } from './05_useContext-use/context'
 // import App from './04_useEffect-use/App'
 // import App from './05_useContext-use/App'
 // import App from './06_useReducer-use/App'
-import App from './07_useCallback-useMemo/App'
+// import App from './07_useCallback-useMemo/App'
+import App from './08_useMemo-use/App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
