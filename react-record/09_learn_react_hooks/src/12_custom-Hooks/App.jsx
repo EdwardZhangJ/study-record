@@ -1,12 +1,21 @@
-import React, { memo, useState } from 'react'
-import { useUserToken } from './hooks'
-
-
+import React, { memo, useEffect } from 'react'
+import './style.css'
 
 const Home = memo(() => {
-  const [user, token] = useUserToken()
+  useEffect(() => {
+    function handleScroll() {
+      console.log(window.scrollX, window.scrollY);
+    }
+
+    window.addEventListener("scroll", handleScroll)
   
-  return <h1>Home Page: {user.name} - {token}</h1>
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
+  
+
+  return <h1>Home Page</h1>
 })
 
 const About = memo(() => {
@@ -15,15 +24,12 @@ const About = memo(() => {
 
 const App = memo(() => {
 
-  const [isShow, setIsShow] = useState(true)
-
 
   return (
-    <div>
+    <div className="app">
       <h1>App Root Component</h1>
-      <button onClick={e => setIsShow(!isShow)}>切换</button>
-      { isShow && <Home /> }
-      { isShow && <About />}
+      <Home /> 
+      <About />
     </div>
   )
 })
