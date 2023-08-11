@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { UserContext, ThemeContext } from './05_useContext-use/context'
+// import { UserContext, ThemeContext } from './05_useContext-use/context'
+import { UserContext, TokenContext } from './12_custom-Hooks/context'
 
 // import App from './App';
 // import App from './01_no-use-hook/App'
@@ -13,15 +14,22 @@ import { UserContext, ThemeContext } from './05_useContext-use/context'
 // import App from './08_useMemo-use/App'
 // import App from './09_useRef-use/App'
 // import App from './10_useImperativeHandle-use/App'
-import App from './11_useLayoutEffect-use/App'
+// import App from './11_useLayoutEffect-use/App'
+import App from './12_custom-Hooks/App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-  <UserContext.Provider value={{name: 'whyt', level: 99}}>
-    <ThemeContext.Provider value={{color: 'red', fontSize: 30 }}>
+  <UserContext.Provider value={{name: 'why', level: 99}}>
+    <TokenContext.Provider value={ 'coderwhy' }>
       <App />
-    </ThemeContext.Provider>
+    </TokenContext.Provider>
   </UserContext.Provider>
+
+  // <UserContext.Provider value={{name: 'why', level: 99}}>
+  //   <ThemeContext.Provider value={{color: 'red', fontSize: 30 }}>
+  //     <App />
+  //   </ThemeContext.Provider>
+  // </UserContext.Provider>
   // </React.StrictMode>
 );
