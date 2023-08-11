@@ -1,14 +1,14 @@
-import React, { memo,  useLayoutEffect, useState } from 'react'
+import React, { memo, useEffect, useLayoutEffect, useState } from 'react'
 
 const App = memo(() => {
   const [count, setCount] = useState(0)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     console.log('useEffect');
     if(count === 0) {
       setCount(Math.random() + 99)
     }
-  }, [count])
+  })
 
   useLayoutEffect(() => {
     console.log('useLayoutEffect');
