@@ -1,18 +1,8 @@
 import React, { memo, useEffect } from 'react'
+import { useScrollPosition } from './hooks'
 import './style.css'
 
 const Home = memo(() => {
-  useEffect(() => {
-    function handleScroll() {
-      console.log(window.scrollX, window.scrollY);
-    }
-
-    window.addEventListener("scroll", handleScroll)
-  
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [])
   
 
   return <h1>Home Page</h1>
@@ -24,10 +14,13 @@ const About = memo(() => {
 
 const App = memo(() => {
 
+  const [scrollX, scrollY] = useScrollPosition( )
 
   return (
     <div className="app">
       <h1>App Root Component</h1>
+      <h3>scrollX: {scrollX}</h3>
+      <h3>scrollY: {scrollY}</h3>
       <Home /> 
       <About />
     </div>
