@@ -1,12 +1,12 @@
 import React, { memo } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 import { addNumberAction, subNumberAction, changeMessageAction } from './store/modules/counter'
 
 // memo 高阶组件包裹起来的组件有对应的特点： 只有props发生改变时，才会重新渲染
 const Home = memo((props) => {
   const { message } = useSelector((state) => ({
     message: state.counter.message
-  }))
+  }), shallowEqual)
   const dispatch = useDispatch()
   function changeMessageHandle() {
     dispatch(changeMessageAction('hello world111'))
