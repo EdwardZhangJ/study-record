@@ -19,7 +19,8 @@ import store from './13_redux-hooks/store'
 // import App from './11_useLayoutEffect-use/App'
 // import App from './12_custom-Hooks/App'
 // import App from './13_redux-hooks/App'
-import App from './14_useId-use/App'
+// import App from './14_useId-use/App'
+import App from './15_useTransition-use/App'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
