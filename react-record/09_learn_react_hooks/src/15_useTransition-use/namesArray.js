@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 const namesArray =[]
 
-for(let i = 0; i < 100; i++){ 
+for(let i = 0; i < 10000; i++){ 
   namesArray.push(faker.person.firstName())
 }
 
