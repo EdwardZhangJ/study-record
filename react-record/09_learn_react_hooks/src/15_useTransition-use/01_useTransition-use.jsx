@@ -1,23 +1,24 @@
-import React, { memo,useDeferredValue,useState } from 'react'
+import React, { memo,useState, useTransition } from 'react'
 import namesArray from './namesArray'
 
 const App = memo(() => {
   const [showNames, setShowNames] = useState(namesArray)
-
-  const deferedShowNames = useDeferredValue(showNames)
+  const [pengding, startTransition] = useTransition()
 
   function valueChange(event) {
+    startTransition(() => {
       const keyword = event.target.value
       const filterShowNames = namesArray.filter(item => item.includes(keyword))
       setShowNames(filterShowNames)
+    })
   }
   return (
     <div>
       <input type="text" onInput={ e => valueChange(e)}/>
-      <h2>用户名列表： </h2>
+      <h2>用户名列表： {pengding && <span>Data Loading</span>}</h2>
       <ul>
         {
-          deferedShowNames.map((item, index) => {
+          showNames.map((item, index) => {
             return <li key={index}>{item}</li>
           })
         }
