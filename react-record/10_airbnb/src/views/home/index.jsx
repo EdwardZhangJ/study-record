@@ -16,7 +16,6 @@ const Home = memo(() => {
 
   return (
     <div>
-      <h1>Home Page</h1>
       <AppHeader />
     </div>
   )

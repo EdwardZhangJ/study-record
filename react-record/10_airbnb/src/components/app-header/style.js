@@ -2,16 +2,9 @@
 import styled from "styled-components";
 
 export const HeaderWrapper = styled.div`
-  .left {
-    color: skyblue;
-
-  }
-
-  .center {
-    color: orange;
-  }
-
-  .right {
-    color: purple;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  border-bottom: 1px solid #eee;
 `
