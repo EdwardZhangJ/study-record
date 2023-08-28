@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from '@/App';
+
+import 'normalize.css'
 import '@/assets/css/index.less';
 // @ => src: webpack alias
 // 问题： react脚手架隐藏webpack
