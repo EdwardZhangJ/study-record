@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useState } from 'react'
 import edRequest from '@/services'
+import AppHeader from 'components/app-header'
 
 const Home = memo(() => {
 
@@ -13,18 +14,10 @@ const Home = memo(() => {
     })
   }, [])
 
-
   return (
     <div>
-      <h2>{highScore.title}</h2>
-      <h4>{highScore.subTitle}</h4>
-      <ul>
-        {
-          highScore.list && highScore.list.map((item, index) => {
-            return <li key={item.id}>{item.name}</li>
-          })
-        }
-      </ul>
+      <h1>Home Page</h1>
+      <AppHeader />
     </div>
   )
 })
