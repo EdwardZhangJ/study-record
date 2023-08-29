@@ -12,6 +12,7 @@ const Home = memo((props) => {
     dispatch(changeMessageAction('hello world111'))
   }
   console.log('Home组件重新渲染了');
+  
   return (
     <div>
       <h2>Home: {message}</h2>
