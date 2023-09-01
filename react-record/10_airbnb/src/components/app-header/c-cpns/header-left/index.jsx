@@ -6,7 +6,9 @@ const HeaderLeft = memo(() => {
   return (
     <div>
       <LeftWrapper>
-        <IconLogo />
+        <div className='logo'>
+          <IconLogo />
+        </div>
       </LeftWrapper>
     </div>
 
