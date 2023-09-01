@@ -5,4 +5,14 @@ export const RightWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  .btns {
+    display: flex;
+    align-items: center;
+  }
+
+  .profile {
+    display: flex;
+    align-items: center;
+  }
 `
