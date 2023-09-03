@@ -5,7 +5,7 @@ const HeaderCenter = memo(() => {
   return (
     <div>
       <CenterWrapper>
-        CenterW111111111111111rapper
+        
       </CenterWrapper>
     </div>
   )
