@@ -7,6 +7,9 @@ const theme = {
     primaryColor: '#484848',
     secondaryColor: '#222222',
   },
+  font: {
+    primaryFontSize: '14px',
+  },
   mixin: {
     boxShadow: `
       transition: box-shadow 0.2s ease;
