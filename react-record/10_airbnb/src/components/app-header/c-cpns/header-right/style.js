@@ -41,5 +41,34 @@ export const RightWrapper = styled.div`
     cursor: pointer;
     /* 设置boxShadow 混入样式 */
     ${props => props.theme.mixin.boxShadow}
+
+
+    .popup-panel {
+      position: absolute;
+      top: 70px;
+      right: 0;
+      width: 240px;
+      background-color: #fff;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+
+      .top, .bottom {
+        padding: 10px 0;
+
+        .item {
+          height: 40px;
+          line-height: 40px;
+          padding: 0 16px;
+        }
+      }
+
+      .top {
+        border-bottom: 1px solid #eee;
+
+        .register {
+          font-weight: 700;
+        }
+      }
+    }
   }
 `

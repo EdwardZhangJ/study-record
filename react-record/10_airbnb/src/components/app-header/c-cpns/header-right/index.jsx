@@ -1,5 +1,5 @@
 
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
 import { RightWrapper } from './style'
 
 import IconGlobal from '@/assets/svg/icon_global'
@@ -7,6 +7,8 @@ import IconMenu from '@/assets/svg/icon_menu'
 import IconAvatar from '@/assets/svg/icon_avatar'
 
 const HeaderRight = memo(() => {
+  const [showPanel, setShowPanel] = useState(false)
+  
   return (
     <div>
       <RightWrapper>
@@ -20,9 +22,22 @@ const HeaderRight = memo(() => {
           {/* <span className='btn'></span> */}
         </div>
 
-        <div className="profile">
+        <div className="profile" onClick={e => setShowPanel(!showPanel)}>
           <IconMenu />
           <IconAvatar/>
+          { showPanel && (
+              <div className='popup-panel'>
+                <div className="top">
+                  <div className="item register">注册</div>
+                  <div className="item login">登录</div>
+                </div>
+                <div className="bottom">
+                  <div className="item help-center">帮助中心</div>
+                </div>
+
+              </div>
+            )}
+          
         </div>
 
 
