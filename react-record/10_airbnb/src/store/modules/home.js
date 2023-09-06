@@ -1,13 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+
+const fetchHomeDataAction = createAsyncThunk('fetchdata', () => {
+  // 1626- day90  8:18/18:08
+})
 
 const homeSlice = createSlice({
   name: 'home',
   initialState: {
-    productList: []
+    goodPriceInfo: []
   },
   reducers: {
-
+    changeGoodPriceInfoAction(state, {payload}) {
+      state.goodPriceInfo = payload
+    }
   }
 })
+
+export const { changeGoodPriceInfoAction } = homeSlice.actions
 
 export default homeSlice.reducer
