@@ -1,6 +1,8 @@
 import React, { memo, useEffect } from 'react'
 import edRequest from '@/services'
 import AppHeader from 'components/app-header'
+import { HomeWrapper } from './style'
+import HomeBanner from './c-cpns/home-banner'
 
 const Home = memo(() => {
 
@@ -15,7 +17,12 @@ const Home = memo(() => {
 
   return (
     <div>
+      {/* 头部 header */}
       <AppHeader />
+
+      <HomeWrapper>
+        <HomeBanner />
+      </HomeWrapper>
     </div>
   )
 })
