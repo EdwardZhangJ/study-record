@@ -1,7 +1,9 @@
+import { getHomeGoodPriceData } from '@/services'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-const fetchHomeDataAction = createAsyncThunk('fetchdata', () => {
-  // 1626- day90  8:18/18:08
+export const fetchHomeDataAction = createAsyncThunk('fetchData', async (payload) => {
+  const res = await getHomeGoodPriceData()
+  return res
 })
 
 const homeSlice = createSlice({
@@ -11,6 +13,11 @@ const homeSlice = createSlice({
   },
   reducers: {
     changeGoodPriceInfoAction(state, {payload}) {
+      state.goodPriceInfo = payload
+    }
+  },
+  extraReducers: {
+    [fetchHomeDataAction.fulfilled]: (state, { payload }) => {
       state.goodPriceInfo = payload
     }
   }
