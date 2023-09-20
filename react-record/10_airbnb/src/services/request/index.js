@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_URL, TIMEOUT } from "./config";
+import { BASE_URL, TIMEOUT } from "./config"
 
 class EDRequest {
   constructor(baseURL, timeout) {
@@ -18,12 +18,17 @@ class EDRequest {
   request(config) {
     return this.instance.request(config)
   }
+
   get(config) {
-    return this.request({...config, method: "get"})
+    return this.request({ ...config, method: "get" })
   }
+
   post(config) {
-    return this.request({...config, method: "post"})
+    return this.request({ ...config, method: "post" })
   }
 }
 
-export default new EDRequest(BASE_URL, TIMEOUT)
+
+const edRequest =  new EDRequest(BASE_URL, TIMEOUT)
+export default edRequest
+

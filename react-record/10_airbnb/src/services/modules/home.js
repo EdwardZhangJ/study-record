@@ -1,4 +1,4 @@
-import edRequest from "..";
+import edRequest from "../request"
 
 export function getHomeGoodPriceData() {
   return edRequest.get({
