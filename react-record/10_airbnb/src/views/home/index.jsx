@@ -10,8 +10,10 @@ import { HomeWrapper } from './style'
 const Home = memo(() => {
 
   /** 从redux中获取数据 */
-   const { goodPriceInfo } =  useSelector((state) => ({
+   const { goodPriceInfo, highScoreInfo, discountInfo } =  useSelector((state) => ({
     goodPriceInfo: state.home.goodPriceInfo,
+    highScoreInfo: state.home.highScoreInfo,
+    discountInfo: state.home.discountInfo,
   }), shallowEqual)
 
   // 派发异步的事件，发送网络请求
@@ -24,6 +26,12 @@ const Home = memo(() => {
       <HomeWrapper>
         <HomeBanner />
         <div className="content">
+          {/* 折扣数据 */}
+          <div className="discount">
+            <SectionHeader title={discountInfo.title} subTitle={discountInfo.subtitle}></SectionHeader>
+
+          </div>
+          {/*  */}
           <SectionHeader title={goodPriceInfo.title} />
           <ul>
             {
