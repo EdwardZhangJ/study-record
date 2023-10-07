@@ -6,6 +6,7 @@ import SectionHeader from '@/components/section-header/index.jsx'
 import HomeBanner from './c-cpns/home-banner'
 
 import { HomeWrapper } from './style'
+import RoomItem from '@/components/room-item'
 
 const Home = memo(() => {
 
@@ -23,12 +24,12 @@ const Home = memo(() => {
     <div>
       <HomeWrapper>
         <HomeBanner />
-        <div className="content">
+        <div className="good-price">
           <SectionHeader title={goodPriceInfo.title} />
-          <ul>
+          <ul className='room-list'>
             {
-              goodPriceInfo.list?.map((item, index) => {
-                return <li key={item.id}>{item.name}</li>
+              goodPriceInfo.list?.slice(0, 8)?.map(item => {
+                return <RoomItem itemData={item} key={item.id}/>
               })
             }
           </ul>
