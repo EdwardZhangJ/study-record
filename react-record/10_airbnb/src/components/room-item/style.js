@@ -24,4 +24,20 @@ export const ItemWrapper = styled.div`
       height: 100%;
     }
   }
+
+  .bottom {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 100;
+    color: ${props => props.theme.color.textColor};
+
+    .count {
+      margin: 0 2px 0 4px;
+    }
+
+    .MuiRating-decimal {
+      margin-right: -2px;
+    }
+  }
 `
