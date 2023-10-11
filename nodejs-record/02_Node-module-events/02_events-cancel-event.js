@@ -6,12 +6,19 @@ const EventEmitter = require('events')
 const emitter = new EventEmitter()
 
 // 监听事件/发射事件
-emitter.on('why', () => {
+function handleWhyFn() {
   console.log('监听 why事件');
-})
+}
+emitter.on('why', handleWhyFn)
 
 // 发射事件
 setTimeout(() => {
   emitter.emit('why')
 
+  // 取消事件监听
+  emitter.off('why', handleWhyFn)
+
+  setTimeout(() => {
+    emitter.emit('why')
+  }, 1000);
 }, 2000);
