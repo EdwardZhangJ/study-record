@@ -19,6 +19,10 @@ readStream.on('end', () => {
   console.log('读取结束');
 })
 
+readStream.on('finish', () => {
+  console.log('文件写入完成');
+})
+
 readStream.on('close', () => {
   console.log('文件读取结束，并关闭');
 })
