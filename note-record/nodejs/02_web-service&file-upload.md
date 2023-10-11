@@ -28,3 +28,5 @@
 ![Alt text](image-21.png)
 
 ### 3. pipe方法
+
+![Alt text](image-22.png)
