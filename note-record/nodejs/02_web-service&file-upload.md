@@ -30,3 +30,5 @@
 ### 3. pipe方法
 
 ![Alt text](image-22.png)
+
+## 二、HTTP模块
