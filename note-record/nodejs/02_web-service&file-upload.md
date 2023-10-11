@@ -1,0 +1,22 @@
+# Web服务器开发和文件上传
+
+## 零、主要内容
+
+- Stream的读写操作
+- http模块web服务
+- request请求对象
+- response响应对象
+- axios node中使用
+- 文件上传细节分析
+
+## 一、Stream
+
+### 1. 认识Stream
+
+![Alt text](image-17.png)
+
+### 2. 文件读写的Stream
+
+![Alt text](image-16.png)
+
+
