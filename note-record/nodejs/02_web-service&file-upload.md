@@ -48,3 +48,10 @@
 ### 4. 监听主机和端口号
 
 ![Alt text](image-26.png)
+
+## 三、Request请求对象
+
+![Alt text](image-27.png)
+
+### 1. URL的处理
+
