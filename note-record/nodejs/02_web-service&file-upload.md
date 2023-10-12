@@ -36,3 +36,15 @@
 ### 1. Web服务器
 
 ![Alt text](image-23.png)
+
+### 2. http模块
+
+![Alt text](image-24.png)
+
+### 3. 创建服务器
+
+![Alt text](image-25.png)
+
+### 4. 监听主机和端口号
+
+![Alt text](image-26.png)
