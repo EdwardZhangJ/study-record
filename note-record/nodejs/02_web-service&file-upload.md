@@ -55,3 +55,22 @@
 
 ### 1. URL的处理
 
+![Alt text](image-30.png)
+
+### 2. URL的解析
+
+![Alt text](image-28.png)
+
+### 3. 创建用户接口
+
+![Alt text](image-29.png)
+
+### 4. HTTP Request Header（一）
+
+![Alt text](image-31.png)
+
+### 5. HTTP Request Header（二）
+
+![Alt text](image-32.png)
+
+## 四、返回响应结果
