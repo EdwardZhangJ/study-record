@@ -76,3 +76,9 @@
 ## 四、返回响应结果
 
 ![Alt text](image-33.png)
+
+### 1. 返回状态码
+
+![Alt text](image-34.png)
+
+### 2. 响应头文件
