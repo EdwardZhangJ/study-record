@@ -82,3 +82,13 @@
 ![Alt text](image-34.png)
 
 ### 2. 响应头文件
+
+![Alt text](image-35.png)
+
+## 五、axios node中使用
+
+### 1. http请求
+
+![Alt text](image-36.png)
+
+### 2. axios请求
