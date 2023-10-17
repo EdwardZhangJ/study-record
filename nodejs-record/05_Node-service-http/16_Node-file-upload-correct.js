@@ -15,7 +15,6 @@ const server = http.createServer((request, response) => {
 
   request.on('end', () => {
     // 1. 截取从 image/png 位置开始后面所有的数据
-    console.log(formData, 'formData');
     const imageType = 'image/png'
     const imageTypePosition = formData.indexOf(imageType) + imageType.length
     let imageData = formData.substring(imageTypePosition)
@@ -24,7 +23,6 @@ const server = http.createServer((request, response) => {
     imageData = imageData.replace(/^\s\s*/, '')
 
     // 3. 替换最后的boundary
-    console.log('imageData.indexOf(`--${boundary}--`)', imageData.indexOf(`${boundary}`));
     imageData = imageData.substring(0, imageData.indexOf(`--${boundary}--`))
 
     // 4. 将imageData 数据存储到文件中
