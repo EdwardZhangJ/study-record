@@ -1,17 +1,37 @@
 const http = require('http');
+const fs = require('fs');
 
 // 1. 创建一个server服务器
 const server = http.createServer((request, response) => {
   request.setEncoding('binary');
 
-  // 客户端传递的数据是表单数据
+  const boundary = request.headers['content-type'].split('; ')[1].replace('boundary=', '')
+
+  // 客户端传递的数据是表单数据（请求体） 
+  let formData = ''
   request.on('data', (data) => {
-    console.log(data);
+    formData += data 
   })
 
   request.on('end', () => {
-    console.log('数据传输完成');
-    response.end('文件上传完成');
+    // 1. 截取从 image/png 位置开始后面所有的数据
+    console.log(formData, 'formData');
+    const imageType = 'image/png'
+    const imageTypePosition = formData.indexOf(imageType) + imageType.length
+    let imageData = formData.substring(imageTypePosition)
+
+    // 2. imageData 开始位置有两个空格
+    imageData = imageData.replace(/^\s\s*/, '')
+
+    // 3. 替换最后的boundary
+    console.log('imageData.indexOf(`--${boundary}--`)', imageData.indexOf(`${boundary}`));
+    imageData = imageData.substring(0, imageData.indexOf(`--${boundary}--`))
+
+    // 4. 将imageData 数据存储到文件中
+    fs.writeFile('./bar.png', imageData, 'binary', (err) => {
+      console.log('存储成功');
+      response.end('文件上传完成');
+    })
   })
 })
 
