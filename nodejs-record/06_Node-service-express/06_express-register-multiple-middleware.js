@@ -1,0 +1,18 @@
+const express = require('express')
+
+const app = express()
+
+// app.get(路径, 中间件1, 中间件2, 中间件3)
+app.get('/home', (req, res, next) => {
+  console.log('match /home + get method middleware ');
+  next()
+}, (req, res, next) => {
+  console.log('match /home + get method middleware 02');
+  next()
+}, (req, res, next) => {
+  console.log('match /home + get method middleware 03');
+})
+
+app.listen(9000, () => {
+  console.log('express服务器启动成功~')
+})
