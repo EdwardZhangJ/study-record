@@ -24,6 +24,12 @@ app.post('/avatar', upload.single('avatar'), (req, res, next) => {
   res.end('upload file success')
 })
 
+// 多文件上传：array
+app.post('/photos', upload.array('photos'), (req, res, next) => {
+  console.log('upload file info', req.files);
+  res.end('upload multiple files success')
+})
+
 // 启动服务器
 app.listen(9000, () => {
   console.log('服务器启动成功~')
