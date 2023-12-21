@@ -10,11 +10,10 @@ const connection = mysql.createConnection({
   password: 'Edward1879220',
 })
 
-// 2. 执行操作语句，操作数据库
-const statement = 'SELECT * FROM `students`'; 
-connection.query(statement, (err, results, fields) => {
+// 2. 执行一个SQL语句：预处理语句
+const statement = 'SELECT * FROM students WHERE age > ?'
+connection.execute(statement, [18], (err, results, fields) => {
   if (err) throw err
-  //  查看结果
+  
   console.log(results)
-  // console.log(fields)
 })
