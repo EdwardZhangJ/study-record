@@ -7,7 +7,11 @@
 // @lc code=start
 function longestConsecutive(nums: number[]): number {
 
-  // method: hash Set方法
+  /***
+   * hash Set方法 - Accepted
+   * Your runtime beats 47.97 % of typescript submissions
+   * Your memory usage beats 52.17 % of typescript submissions (72.7 MB)
+   */
   const set = new Set(nums)
   let longsetStreak = 0
   for (const num of set) {
@@ -25,6 +29,7 @@ function longestConsecutive(nums: number[]): number {
     }
   }
   return longsetStreak
+
 };
 // @lc code=end
 
