@@ -1,6 +1,8 @@
 # JavaScript Basic: 内置对象 - [Map](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map)
 
-## 描述
+## Map
+
+### 描述
 
 对象是键值对的集合。Map 中的一个键只能出现一次；它在 Map 的集合中是独一无二的。Map 对象按键值对迭代——一个 for...of 循环在每次迭代后会返回一个形式为 [key, value] 的数组。迭代按插入顺序进行，即键值对按 set() 方法首次插入到集合中的顺序（也就是说，当调用 set() 时，map 中没有具有相同值的键）进行迭代。
 
@@ -33,3 +35,8 @@
 
 ### 设置对象属性
 
+## 实例方法
+
+- Map.prototype.keys()
+
+返回一个新的迭代器对象，其中包含 Map 对象中的按插入顺序插入的所有键的值。
