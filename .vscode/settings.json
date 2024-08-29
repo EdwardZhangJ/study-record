@@ -28,7 +28,7 @@
   "editor.find.addExtraSpaceOnTop": false,
   "editor.fontFamily": "Consolas, monospace",
   "editor.fontLigatures": true,
-  "editor.fontSize": 16,
+  "editor.fontSize": 14,
   "editor.glyphMargin": true,
   "editor.guides.bracketPairs": "active",
   "editor.inlineSuggest.enabled": true,
