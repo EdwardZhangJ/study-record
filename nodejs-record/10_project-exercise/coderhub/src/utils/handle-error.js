@@ -1,7 +1,7 @@
 const app = require('../app')
 const { NAME_OR_PASSWORD_IS_REQUIRED, NAME_IS_ALREADY_EXISTS } = require('../config/error')
 
-app.on('error', (err, ctx) => {
+const errorHandle = (err, ctx) => {
   let code = 0, message = ''
   switch (err) {
     case NAME_OR_PASSWORD_IS_REQUIRED:
@@ -18,4 +18,6 @@ app.on('error', (err, ctx) => {
   }
 
   ctx.body = { code, message }
-})
+}
+
+app.on('error', errorHandle)

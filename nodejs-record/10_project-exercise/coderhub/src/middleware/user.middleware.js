@@ -1,5 +1,6 @@
 const { NAME_OR_PASSWORD_IS_REQUIRED, NAME_IS_ALREADY_EXISTS } = require('../config/error')
 const userService = require('../service/user.service')
+const passwordDecrypt = require('../utils/password-decrypt')
 
 
 const verifyUser = async (ctx, next) => {
@@ -25,4 +26,15 @@ const verifyUser = async (ctx, next) => {
   await next()
 }
 
-module.exports = verifyUser
+const handlePassword = async (ctx, next) => {
+  // 1. 取出密码
+  const { password } = ctx.request.body
+
+  // 2. 对密码进行加密
+  ctx.request.body.password = passwordDecrypt(password)
+
+  // 3. 执行下一个中间件
+  await next()
+}
+
+module.exports = { verifyUser, handlePassword }
