@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2>客户端网站</h2>
+  <button>设置cookie</button>
+  <script>
+
+    const btnEl = document.querySelector('button')
+    btnEl.onclick = function () {
+
+      // 浏览器中通过js设置cookie（开发中很少使用）
+      document.cookie = "name=why"
+      document.cookie = "age=18"
+    }
+  </script>
+</body>
+
+</html>
