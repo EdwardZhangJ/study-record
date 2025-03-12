@@ -230,4 +230,43 @@ CDN通过将资源缓存到离用户更近的节点，使得静态资源可以�
 
 * JavaScript 性能优化是前端开发中重要的部分，直接影响页面的速度、交互响应速度以及整体用户体验。JS 优化可以从代码优化、渲染优化、执行优化、加载优化、内存管理 等方面进行性能优化
 
-##### 1.2.4.1 代码优化
+* 代码优化
+  * 避免使用全局变量
+  * 避免不必要的计算
+* 渲染优化
+  * 避免重排和重绘 (Reflow & Repaint)
+    * 触发重排和重绘：一是修改 DOM 树的结构，移动增删等，二是修改dom元素的几何属性，宽高之类的，三是获取offsetTop、offsetLeft、 offsetWidth、offsetHeight、scrollTop、scrollLeft、scrollWidth、scrollHeight、clientTop、clientLeft、clientWidth、clientHeight
+    * **如何避免?**
+    * 缓存位置的值如：offsetTop，不要老访问
+    * 使用 DocumentFragment 进行批量 DOM 操作，减少回流次数。
+    * 避免逐个修改样式，而是使用 classList 统一修改。
+  * 使用 Virtual DOM: 直接操作 DOM 可能会触发大量的重排和重绘。 使用 React / Vue 这样的框架，利用 Virtual DOM 进行高效的 DOM 更新。
+  * 加载优化
+    * 延迟加载 JavaScript
+
+```javascript
+<!-- 不推荐 -->
+<script src="app.js"></script>
+
+<!-- 推荐 -->
+<script src="app.js" async></script>
+```
+
+* 内存管理
+  * 避免内存泄漏
+    * 及时清除定时器
+    * 避免 DOM 引用未释放：
+  * 使用 IndexedDB 进行本地存储:localStorage 仅支持字符串存储，性能较差。使用 IndexedDB 存储大量结构化数据，提高访问效率
+
+* 使用 Web Worker 进行异步计算
+* 其他
+  * 使用事件委托，将事件绑定在父元素上：利用事件冒泡机制处理子元素事件。
+  * 避免数组、对象的深拷贝：使用 JSON 进行深拷贝，或者 lodash.cloneDeep()，会导致大量的对象克隆，影响性能。应当使用结构共享方法，如 Object.assign() 或 ...。
+  * 使用 Map 和 Set 替代 Object 和 Array:普通对象和数组在大规模数据操作时，Map 和 Set 有更高的性能。当键值对存储较多时，使用 Map，当去重查找时，使用 Set。
+
+* 当页面加载大佬JavaScript资源时可以使用：
+  * 使用 Webpack 代码分割 (import() 进行动态加载)。
+  * 使用 async / defer 加载外部脚本。
+  * 使用 IndexedDB 存储大量数据，而非 localStorage。
+  * 使用 Web Worker 处理复杂计算，避免主线程阻塞。
+  * 使用 Service Worker 进行离线缓存，提高页面可用性。
