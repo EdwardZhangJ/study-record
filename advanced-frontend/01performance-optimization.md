@@ -230,19 +230,22 @@ CDN通过将资源缓存到离用户更近的节点，使得静态资源可以�
 
 * JavaScript 性能优化是前端开发中重要的部分，直接影响页面的速度、交互响应速度以及整体用户体验。JS 优化可以从代码优化、渲染优化、执行优化、加载优化、内存管理 等方面进行性能优化
 
-* 代码优化
-  * 避免使用全局变量
-  * 避免不必要的计算
-* 渲染优化
-  * 避免重排和重绘 (Reflow & Repaint)
-    * 触发重排和重绘：一是修改 DOM 树的结构，移动增删等，二是修改dom元素的几何属性，宽高之类的，三是获取offsetTop、offsetLeft、 offsetWidth、offsetHeight、scrollTop、scrollLeft、scrollWidth、scrollHeight、clientTop、clientLeft、clientWidth、clientHeight
-    * **如何避免?**
-    * 缓存位置的值如：offsetTop，不要老访问
-    * 使用 DocumentFragment 进行批量 DOM 操作，减少回流次数。
-    * 避免逐个修改样式，而是使用 classList 统一修改。
-  * 使用 Virtual DOM: 直接操作 DOM 可能会触发大量的重排和重绘。 使用 React / Vue 这样的框架，利用 Virtual DOM 进行高效的 DOM 更新。
-  * 加载优化
-    * 延迟加载 JavaScript
+##### 1.2.4.1 代码优化
+
+* 避免使用全局变量
+* 避免不必要的计算
+
+##### 1.2.4.2 渲染优化
+
+* 避免重排和重绘 (Reflow & Repaint)
+  * 触发重排和重绘：一是修改 DOM 树的结构，移动增删等，二是修改dom元素的几何属性，宽高之类的，三是获取offsetTop、offsetLeft、 offsetWidth、offsetHeight、scrollTop、scrollLeft、scrollWidth、scrollHeight、clientTop、clientLeft、clientWidth、clientHeight
+  * **如何避免?**
+  * 缓存位置的值如：offsetTop，不要老访问
+  * 使用 DocumentFragment 进行批量 DOM 操作，减少回流次数。
+  * 避免逐个修改样式，而是使用 classList 统一修改。
+* 使用 Virtual DOM: 直接操作 DOM 可能会触发大量的重排和重绘。 使用 React / Vue 这样的框架，利用 Virtual DOM 进行高效的 DOM 更新。
+* 加载优化
+  * 延迟加载 JavaScript
 
 ```javascript
 <!-- 不推荐 -->
@@ -252,17 +255,20 @@ CDN通过将资源缓存到离用户更近的节点，使得静态资源可以�
 <script src="app.js" async></script>
 ```
 
-* 内存管理
-  * 避免内存泄漏
-    * 及时清除定时器
-    * 避免 DOM 引用未释放：
-  * 使用 IndexedDB 进行本地存储:localStorage 仅支持字符串存储，性能较差。使用 IndexedDB 存储大量结构化数据，提高访问效率
+##### 1.2.4.3 内存管理
 
-* 使用 Web Worker 进行异步计算
-* 其他
-  * 使用事件委托，将事件绑定在父元素上：利用事件冒泡机制处理子元素事件。
-  * 避免数组、对象的深拷贝：使用 JSON 进行深拷贝，或者 lodash.cloneDeep()，会导致大量的对象克隆，影响性能。应当使用结构共享方法，如 Object.assign() 或 ...。
-  * 使用 Map 和 Set 替代 Object 和 Array:普通对象和数组在大规模数据操作时，Map 和 Set 有更高的性能。当键值对存储较多时，使用 Map，当去重查找时，使用 Set。
+* 避免内存泄漏
+  * 及时清除定时器
+  * 避免 DOM 引用未释放：
+* 使用 IndexedDB 进行本地存储:localStorage 仅支持字符串存储，性能较差。使用 IndexedDB 存储大量结构化数据，提高访问效率
+
+##### 1.2.4.4 使用 Web Worker 进行异步计算
+
+##### 1.2.4.5 其他
+
+* 使用事件委托，将事件绑定在父元素上：利用事件冒泡机制处理子元素事件。
+* 避免数组、对象的深拷贝：使用 JSON 进行深拷贝，或者 lodash.cloneDeep()，会导致大量的对象克隆，影响性能。应当使用结构共享方法，如 Object.assign() 或 ...。
+* 使用 Map 和 Set 替代 Object 和 Array:普通对象和数组在大规模数据操作时，Map 和 Set 有更高的性能。当键值对存储较多时，使用 Map，当去重查找时，使用 Set。
 
 * 当页面加载大佬JavaScript资源时可以使用：
   * 使用 Webpack 代码分割 (import() 进行动态加载)。
@@ -270,3 +276,166 @@ CDN通过将资源缓存到离用户更近的节点，使得静态资源可以�
   * 使用 IndexedDB 存储大量数据，而非 localStorage。
   * 使用 Web Worker 处理复杂计算，避免主线程阻塞。
   * 使用 Service Worker 进行离线缓存，提高页面可用性。
+
+#### 1.2.5 Vue项目优化
+
+* 从数据管理、组件优化、事件处理、网络优化、渲染优化等维度进行优化
+
+##### 1.2.5.1 数据管理优化
+
+* 数据管理是 Vue 性能优化的关键，因为 Vue 依赖响应式数据系统进行 DOM 更新，避免不必要的响应式追踪可以提高性能
+
+* **如何实现Vue数据管理优化：**
+  * 避免不必要的响应式数据：如果某些数据不会变更，可以使用 shallowRef() 或 shallowReactive() 降低 Vue 的响应式追踪成本
+  * 避免 watch 监听深层对象：仅监听必要属性值
+  * 避免 computed 修改数据：computed 计算属性应该是纯函数，不应修改任何状态，否则会触发 Vue 的无限依赖追踪，导致性能问题
+
+##### 1.2.5.2 组件优化
+
+* Vue 组件的合理拆分和优化可以减少不必要的渲染，提高页面流畅度
+  * 使用 v-once 进行静态渲染: 如果一个元素的内容不会变更，可以使用 v-once，让 Vue 只渲染一次，避免额外的 DOM 计算。
+  * 使用key 提高 v-for 效率
+  * 组件懒加载：使用 defineAsyncComponent 实现组件按需加载，减少首屏加载时间。
+  * 避免 v-if 和 v-for 同时使用:v-if + v-for 会导致每次渲染都执行判断，影响性能。应先用 computed 过滤数据。一般在外层套个template在套vif或者如下面代码所示
+  * 使用 v-show 替代 v-if：v-show 仅切换 display 属性，而 v-if 会添加和删除 DOM 元素，适用于频繁切换的组件。
+  * 使用 computed 代替 methods：computed 是基于依赖的缓存计算结果，而 methods 每次调用都会重新计算。
+
+##### 1.2.5.3 事件优化
+
+* 防止不必要的事件触发：使用事件修饰符（如 .stop、.prevent）来优化事件处理。
+* 使用防抖（debounce）和节流（throttle）：防抖适用于搜索框等场景，减少输入时的频繁请求；节流适用于`scroll、resize`事件，减少高频触发。
+
+##### 1.2.5.4 网络优化
+
+* 代码分割: 使用 import() 进行懒加载
+* 开启gzip压缩
+
+##### 1.2.5.5 渲染优化
+
+* 使用 keep-alive 缓存组件: keep-alive 避免重复销毁和创建，提高性能。
+* 延迟图片加载 使用 LazyLoad 使图片懒加载
+
+##### 63 函数式组件
+
+* 在 Vue 中，函数式组件（Functional Components）是一种没有实例、没有生命周期钩子、没有响应式数据的组件，它们通常被用于呈现简单的 UI，而不需要 Vue 的响应式系统的支持。函数式组件因其简单性和效率，通常能够带来性能优化，尤其在渲染大量静态组件时。所以合理使用函数式组件能带来性能的提升
+* 组件特点：
+  * 无状态
+  * 无生命周期
+  * 更快的渲染性能
+* 优点：
+  * 更少的内存开销
+  * 更少的渲染开销
+  * 避免不必要的渲染
+
+* **如何实现Vue的函数式组件**
+
+1. 在 Vue 2 中，函数式组件的实现比较简单，只需要将 functional: true 设置为组件的选项即可。
+2. 在 Vue 3 中，函数式组件的创建方式更简洁，直接通过渲染函数（render()）来定义组件。这里的 setup() 语法糖与传统的函数式组件结合使用时，可以更加清晰和高效。
+3. 对于更高级的渲染函数，可以手动使用`h()`来返回虚拟DOM
+
+```vue
+<!-- vue2 -->
+<template functional>
+  <div>
+    <h1>{{ props.title }}</h1>
+    <p>{{ props.content }}</p>
+  </div>
+</template>
+
+<script>
+export default {
+  functional: true, // 声明该组件为函数式组件
+  props: {
+    title: String,
+    content: String
+  }
+};
+</script>
+```
+
+```VUE
+<!-- vue3 -->
+<script setup>
+defineProps({
+  title: String,
+  content: String
+});
+</script>
+
+<template>
+  <div>
+    <h1>{{ title }}</h1>
+    <p>{{ content }}</p>
+  </div>
+</template>
+```
+
+```javascript
+import { h } from 'vue';
+export default {
+  functional: true,
+  render() {
+    return h('div', [
+      h('h1', this.title),
+      h('p', this.content)
+    ]);
+  }
+};
+```
+
+* **使用函数式组件常见？**
+  * 用于渲染静态内容：函数式组件适用于渲染静态内容，不需要响应式数据和生命周期钩子。
+  * 高效的列表渲染： 如果你需要渲染一个包含大量简单静态内容的列表（如卡片、条目等），可以使用函数式组件，这样可以避免每个列表项都拥有自己的 Vue 实例，从而减少内存和性能开销。
+  * 减少不必要的复杂性： 对于非常简单、无状态的组件，使用函数式组件可以避免使用 Vue 的响应式系统和生命周期钩子，这样组件会更简单、更易于维护。
+
+##### 1.2.5.7 第三方组件的按需引入
+
+* 在 Vue 项目中，使用第三方 UI 组件库（如 Element Plus、Ant Design Vue 等）可以加速开发，提高 UI 质量。然而，直接全量引入组件库会导致项目体积增大、加载时间变长、性能下降。因此，按需引入组件库成为提升 Vue 项目性能的一个关键优化策略。
+
+#### 1.2.6 React项目优化
+
+* React 提供了强大的声明式 UI 开发能力，但如果不注意优化，应用可能会遇到渲染性能瓶颈、状态管理问题、资源加载缓慢等问题。以下是 React 项目中的性能优化策略，涵盖组件渲染优化、状态管理优化、资源优化等多个方面，并结合实际代码示例。
+
+##### 1.2.6.1 避免不必要的组件渲染
+
+* 使用 `React.memo` 避免不必要的组件渲染
+  * 是一个高阶组件（HOC），用于缓存组件的渲染结果，避免因父组件重新渲染导致子组件重复渲染。
+  * 适用场景：组件渲染成本较高，且 props 不常变化的情况下。
+  * 注意：React.memo 只对纯组件有效，如果 props 是对象或函数，每次渲染都会创建新的引用，可能导致 React.memo 失效
+
+```jsx
+import React from 'react';
+// 普通组件，每次父组件更新都会重新渲染
+const Button = ({ label, onClick }) => {
+  console.log('Button Rendered');
+  return <button onClick={onClick}>{label}</button>;
+};
+// 使用 React.memo 缓存组件，只有 props 变化时才重新渲染
+const MemoizedButton = React.memo(Button);
+export default MemoizedButton;
+```
+
+* 使用 `PureComponent` 优化类组件
+  * 对于类组件，可以使用 React.PureComponent 代替 React.Component，它会自动进行浅层比较，避免不必要的更新。
+  * 适用于类组件，并且 props 和 state 只包含基本类型
+  * 注意：PureComponent 只进行浅比较，如果 props 传递的是引用类型（对象、数组），需要配合 useMemo 或 useCallback
+
+```jsx
+import React, { PureComponent } from 'react';
+
+class Counter extends PureComponent {
+  render() {
+    console.log('Counter Rendered');
+    return <h1>Count: {this.props.count}</h1>;
+  }
+}
+
+export default Counter;
+```
+
+* shouldComponentUpdate：控制类组件是否重新渲染
+  * useCallback 和 useMemo 主要用于缓存不变的函数和计算结果，避免在子组件中因函数重新创建而触发不必要的渲染
+
+##### 1.2.6.2 使用 `useCallback` 和 `useMemo` 缓存函数和计算结果
+
+* 使用 `useCallback` 缓存回调函数
