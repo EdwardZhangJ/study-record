@@ -7,14 +7,14 @@
 // @lc code=start
 function removeDuplicates(nums: number[]): number {
   const n = nums.length
-  if(n <= 2) return n
-  let first = 0, next = 1
-  while(next < n) {
-    if(nums[next] !== nums[first-1]) {
-      nums[++first] = nums[next]
+  if (n <= 2) return n
+  let first = 2, next = 2
+  while (next < n) {
+    if (nums[next] !== nums[first - 2]) {
+      nums[first] = nums[next]
+      ++first
     }
-
-    next++
+    ++next
   }
   return first
 };

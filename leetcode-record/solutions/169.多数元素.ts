@@ -21,24 +21,41 @@ function majorityElement(nums: number[]): number {
 
     在遍历完成后，candidate 即为整个数组的众数。
    */
-  let result = nums[0]
-  let index = 1
+  // let result = nums[0]
+  // let index = 1
 
-  for (let i = 1; i < nums.length; i++) {
-    if (nums[i] === result) {
-      index++
+  // for (let i = 1; i < nums.length; i++) {
+  //   if (nums[i] === result) {
+  //     index++
+  //   }
+  //   else {
+  //     if (index === 0) {
+  //       result = nums[i]
+  //       index = 1
+  //     } else {
+  //       index--
+  //     }
+  //   }
+  // }
+
+  // return result
+
+  /**
+   * 根据 deepseek 优化
+   */
+  let count = 0;
+  let candidate: number | null = null
+
+  for (const num of nums) {
+    if(count === 0) {
+      candidate = num
     }
-    else {
-      if (index === 0) {
-        result = nums[i]
-        index = 1
-      } else {
-        index--
-      }
-    }
+
+    count += (num === candidate ? 1 : -1)
   }
 
-  return result
+  return candidate as number
 };
+
 // @lc code=end
 
