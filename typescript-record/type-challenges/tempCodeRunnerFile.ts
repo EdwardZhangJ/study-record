@@ -1,0 +1,1 @@
+type I = MyExclude<string | number | (() => void), Function>
